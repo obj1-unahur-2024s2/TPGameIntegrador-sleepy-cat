@@ -1,10 +1,13 @@
-# Nombre del juego (<- borrar y completar)
+# Nombre del juego: Pendiente...
 
 ## Equipo de desarrollo
 
-- Alguien
-- Persona
-- etc.
+- Castellon Santiago.
+- Colman Lautaro.
+- Cotera Dylan.
+- Gomez Sofia.
+- Retamozo Alejo.
+- Bianco German.
 
 ## Capturas
 
@@ -12,8 +15,9 @@
 
 ## Reglas de Juego / Instrucciones
 
-(Escribirlas)
-
+El juego consiste en atravezar diferentes niveles hasta llegar al ultimo y derrotar al jefe.
+Nuestro personaje principal es "Sleepy", un gato dormilon. 
+Para ganar el juego hay que atravezar diferentes pisos de un edificio hasta llegar al tejado donde aguarda el premio. Durante el camino hay que resolver pequeños puzles y sobre todo alimentar a sleepy para que no se quede sin energia y se quede dormido. 
 
 ## Otros
 
