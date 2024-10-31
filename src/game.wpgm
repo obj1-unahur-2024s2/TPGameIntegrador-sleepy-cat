@@ -1,0 +1,7 @@
+import wollok.game.*
+import nivel1.*
+
+program SleepyCatGame {
+	nivel1.iniciar()
+	game.start()
+}
