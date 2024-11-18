@@ -325,3 +325,57 @@
 {"level":"error","message":"✘ Completions for node failed: Error: [Send]{1cad4f} at src/nivel1.wlk:21 exhausted all cases without a match [Send]{1cad4f} at src/nivel1.wlk:21 exhausted all cases without a match","stack":"Error: [Send]{1cad4f} at src/nivel1.wlk:21 exhausted all cases without a match\n    at c:\\Users\\Yerma\\.vscode\\extensions\\uqbar.wollok-lsp-ide-0.3.6\\out\\server\\src\\server.js:38:6067\n    at yh (c:\\Users\\Yerma\\.vscode\\extensions\\uqbar.wollok-lsp-ide-0.3.6\\out\\server\\src\\server.js:2291:42)\n    at kh (c:\\Users\\Yerma\\.vscode\\extensions\\uqbar.wollok-lsp-ide-0.3.6\\out\\server\\src\\server.js:2291:1004)\n    at yh (c:\\Users\\Yerma\\.vscode\\extensions\\uqbar.wollok-lsp-ide-0.3.6\\out\\server\\src\\server.js:2291:456)\n    at c:\\Users\\Yerma\\.vscode\\extensions\\uqbar.wollok-lsp-ide-0.3.6\\out\\server\\src\\server.js:2291:2700\n    at c:\\Users\\Yerma\\.vscode\\extensions\\uqbar.wollok-lsp-ide-0.3.6\\out\\server\\src\\server.js:2298:3774\n    at c:\\Users\\Yerma\\.vscode\\extensions\\uqbar.wollok-lsp-ide-0.3.6\\out\\server\\src\\server.js:37:74872\n    at Fe (c:\\Users\\Yerma\\.vscode\\extensions\\uqbar.wollok-lsp-ide-0.3.6\\out\\server\\src\\server.js:7:8527)\n    at Pt (c:\\Users\\Yerma\\.vscode\\extensions\\uqbar.wollok-lsp-ide-0.3.6\\out\\server\\src\\server.js:7:6189)\n    at Gi (c:\\Users\\Yerma\\.vscode\\extensions\\uqbar.wollok-lsp-ide-0.3.6\\out\\server\\src\\server.js:7:6378)","timestamp":"2024-11-18T22:35:41.230Z"}
 {"level":"info","message":"onRequest - completionItem/resolve","timestamp":"2024-11-18T22:35:41.299Z"}
 {"level":"error","message":"✘ Failed to rebuild document Failed to parse src/nivel1.wlk: \n-- PARSING FAILED --------------------------------------------------\n\n  263 |     if(sleepyCat.llave())\n  264 |       finDelJuego.perdiste()\n> 265 |   } \n      |   ^\n  266 | }\n\nExpected one of the following: \n\n'@', 'class', 'const', 'describe', 'mixin', 'object', 'only', 'package', 'program', 'test', 'var', '{', EOF, comment, not \"} \r\n\", whitespace\n","stack":"Error: Failed to parse src/nivel1.wlk: \n-- PARSING FAILED --------------------------------------------------\n\n  263 |     if(sleepyCat.llave())\n  264 |       finDelJuego.perdiste()\n> 265 |   } \n      |   ^\n  266 | }\n\nExpected one of the following: \n\n'@', 'class', 'const', 'describe', 'mixin', 'object', 'only', 'package', 'program', 'test', 'var', '{', EOF, comment, not \"} \r\n\", whitespace\n\n    at c:\\Users\\Yerma\\.vscode\\extensions\\uqbar.wollok-lsp-ide-0.3.6\\out\\server\\src\\server.js:2254:32415\n    at Array.map (<anonymous>)\n    at Jfn (c:\\Users\\Yerma\\.vscode\\extensions\\uqbar.wollok-lsp-ide-0.3.6\\out\\server\\src\\server.js:2254:32339)\n    at k2.buildEnvironmentFrom (c:\\Users\\Yerma\\.vscode\\extensions\\uqbar.wollok-lsp-ide-0.3.6\\out\\server\\src\\server.js:2285:6721)\n    at k2.updateEnvironmentWith (c:\\Users\\Yerma\\.vscode\\extensions\\uqbar.wollok-lsp-ide-0.3.6\\out\\server\\src\\server.js:2285:6456)\n    at jL (c:\\Users\\Yerma\\.vscode\\extensions\\uqbar.wollok-lsp-ide-0.3.6\\out\\server\\src\\server.js:2298:2292)\n    at v3.invoke (c:\\Users\\Yerma\\.vscode\\extensions\\uqbar.wollok-lsp-ide-0.3.6\\out\\server\\src\\server.js:3:157200)\n    at o.fire (c:\\Users\\Yerma\\.vscode\\extensions\\uqbar.wollok-lsp-ide-0.3.6\\out\\server\\src\\server.js:3:157970)\n    at c:\\Users\\Yerma\\.vscode\\extensions\\uqbar.wollok-lsp-ide-0.3.6\\out\\server\\src\\server.js:37:57871\n    at Vr (c:\\Users\\Yerma\\.vscode\\extensions\\uqbar.wollok-lsp-ide-0.3.6\\out\\server\\src\\server.js:8:1561)","timestamp":"2024-11-18T22:37:01.129Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":1341,"timestamp":"2024-11-18T22:58:01.197Z"}
+{"level":"info","message":"onRequest - WORKSPACE_URI:file:///home/sofia/Facultad/Objetos1/ProyectosWollok/TPGameIntegrador-sleepy-cat","timestamp":"2024-11-18T22:58:01.237Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":3777,"timestamp":"2024-11-18T22:58:05.044Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":935,"timestamp":"2024-11-18T22:58:06.077Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":621,"timestamp":"2024-11-18T22:58:06.711Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":608,"timestamp":"2024-11-18T22:58:07.333Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":759,"timestamp":"2024-11-18T22:58:08.121Z"}
+{"level":"info","message":"⌛ Validating src/nivel1.wlk","timeElapsed":2460,"timestamp":"2024-11-18T22:58:10.606Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":1776,"timestamp":"2024-11-18T22:58:12.400Z"}
+{"level":"info","message":"⌛ Validating src/personajes.wlk","timeElapsed":1241,"timestamp":"2024-11-18T22:58:13.762Z"}
+{"level":"info","message":"⌛ Validating src/testExample.wtest","timeElapsed":1573,"timestamp":"2024-11-18T22:58:15.339Z"}
+{"level":"info","message":"⌛ Validating src/game.wpgm","timeElapsed":2287,"timestamp":"2024-11-18T22:58:17.632Z"}
+{"level":"info","message":"⌛ Validating src/niveles.wlk","timeElapsed":1155,"timestamp":"2024-11-18T22:58:18.791Z"}
+{"level":"info","message":"⌛ Validating src/personajes.wlk","timeElapsed":900,"timestamp":"2024-11-18T22:58:19.702Z"}
+{"level":"info","message":"⌛ Validating src/testExample.wtest","timeElapsed":556,"timestamp":"2024-11-18T22:58:20.260Z"}
+{"level":"info","message":"⌛ Validating src/game.wpgm","timeElapsed":685,"timestamp":"2024-11-18T22:58:20.947Z"}
+{"level":"info","message":"⌛ Validating src/niveles.wlk","timeElapsed":709,"timestamp":"2024-11-18T22:58:21.658Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":1658,"timestamp":"2024-11-18T22:58:23.320Z"}
+{"level":"info","message":"⌛ Validating src/nivel1.wlk","timeElapsed":2505,"timestamp":"2024-11-18T22:58:25.998Z"}
+{"level":"info","message":"onRequest - STRONG_FILES_CHANGED:/home/sofia/Facultad/Objetos1/ProyectosWollok/TPGameIntegrador-sleepy-cat/assets/gameOver2.png","timestamp":"2024-11-18T23:03:54.760Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":958,"timestamp":"2024-11-18T23:03:55.721Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":465,"timestamp":"2024-11-18T23:03:56.187Z"}
+{"level":"info","message":"Removing diagnostics from /home/sofia/Facultad/Objetos1/ProyectosWollok/TPGameIntegrador-sleepy-cat/assets/gameOver2.png","timestamp":"2024-11-18T23:03:56.302Z"}
+{"level":"info","message":"onRequest - WORKSPACE_URI:file:///home/sofia/Facultad/Objetos1/ProyectosWollok/TPGameIntegrador-sleepy-cat","timestamp":"2024-11-18T23:03:56.731Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":712,"timestamp":"2024-11-18T23:03:57.991Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":413,"timestamp":"2024-11-18T23:03:58.418Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":1389,"timestamp":"2024-11-18T23:03:59.818Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":1573,"timestamp":"2024-11-18T23:04:01.396Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":572,"timestamp":"2024-11-18T23:04:01.972Z"}
+{"level":"info","message":"⌛ Validating src/personajes.wlk","timeElapsed":910,"timestamp":"2024-11-18T23:04:02.892Z"}
+{"level":"info","message":"⌛ Validating src/testExample.wtest","timeElapsed":501,"timestamp":"2024-11-18T23:04:03.393Z"}
+{"level":"info","message":"⌛ Validating src/game.wpgm","timeElapsed":432,"timestamp":"2024-11-18T23:04:03.830Z"}
+{"level":"info","message":"⌛ Validating src/nivel1.wlk","timeElapsed":470,"timestamp":"2024-11-18T23:04:04.300Z"}
+{"level":"info","message":"⌛ Validating src/niveles.wlk","timeElapsed":610,"timestamp":"2024-11-18T23:04:04.912Z"}
+{"level":"info","message":"onRequest - STRONG_FILES_CHANGED:/home/sofia/Facultad/Objetos1/ProyectosWollok/TPGameIntegrador-sleepy-cat/assets/gameOver3.png","timestamp":"2024-11-18T23:04:12.937Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":976,"timestamp":"2024-11-18T23:04:13.916Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":1432,"timestamp":"2024-11-18T23:04:15.362Z"}
+{"level":"info","message":"Removing diagnostics from /home/sofia/Facultad/Objetos1/ProyectosWollok/TPGameIntegrador-sleepy-cat/assets/gameOver3.png","timestamp":"2024-11-18T23:04:15.476Z"}
+{"level":"info","message":"onRequest - WORKSPACE_URI:file:///home/sofia/Facultad/Objetos1/ProyectosWollok/TPGameIntegrador-sleepy-cat","timestamp":"2024-11-18T23:04:16.312Z"}
+{"level":"info","message":"onRequest - STRONG_FILES_CHANGED:/home/sofia/Facultad/Objetos1/ProyectosWollok/TPGameIntegrador-sleepy-cat/assets/inicio.png","timestamp":"2024-11-18T23:04:52.259Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":1506,"timestamp":"2024-11-18T23:04:53.775Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":2293,"timestamp":"2024-11-18T23:04:56.069Z"}
+{"level":"info","message":"Removing diagnostics from /home/sofia/Facultad/Objetos1/ProyectosWollok/TPGameIntegrador-sleepy-cat/assets/inicio.png","timestamp":"2024-11-18T23:04:56.171Z"}
+{"level":"info","message":"onRequest - WORKSPACE_URI:file:///home/sofia/Facultad/Objetos1/ProyectosWollok/TPGameIntegrador-sleepy-cat","timestamp":"2024-11-18T23:04:56.336Z"}
+{"level":"info","message":"onRequest - STRONG_FILES_CHANGED:/home/sofia/Facultad/Objetos1/ProyectosWollok/TPGameIntegrador-sleepy-cat/assets/nivel2A.png","timestamp":"2024-11-18T23:05:37.779Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":1792,"timestamp":"2024-11-18T23:05:39.571Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":2303,"timestamp":"2024-11-18T23:05:41.880Z"}
+{"level":"info","message":"Removing diagnostics from /home/sofia/Facultad/Objetos1/ProyectosWollok/TPGameIntegrador-sleepy-cat/assets/nivel2A.png","timestamp":"2024-11-18T23:05:41.981Z"}
+{"level":"info","message":"onRequest - WORKSPACE_URI:file:///home/sofia/Facultad/Objetos1/ProyectosWollok/TPGameIntegrador-sleepy-cat","timestamp":"2024-11-18T23:05:42.090Z"}
+{"level":"info","message":"onRequest - STRONG_FILES_CHANGED:/home/sofia/Facultad/Objetos1/ProyectosWollok/TPGameIntegrador-sleepy-cat/assets/nivel2B.png","timestamp":"2024-11-18T23:05:52.554Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":1431,"timestamp":"2024-11-18T23:05:53.987Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":2239,"timestamp":"2024-11-18T23:05:56.240Z"}
+{"level":"info","message":"Removing diagnostics from /home/sofia/Facultad/Objetos1/ProyectosWollok/TPGameIntegrador-sleepy-cat/assets/nivel2B.png","timestamp":"2024-11-18T23:05:56.345Z"}
+{"level":"info","message":"onRequest - WORKSPACE_URI:file:///home/sofia/Facultad/Objetos1/ProyectosWollok/TPGameIntegrador-sleepy-cat","timestamp":"2024-11-18T23:05:56.414Z"}
