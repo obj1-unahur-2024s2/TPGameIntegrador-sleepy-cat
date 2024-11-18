@@ -1,7 +1,11 @@
 import wollok.game.*
-import nivel1.*
+import niveles.*
 
 program SleepyCatGame {
-	nivel1.iniciar()
+	game.title("Pepita")
+	game.height(17)
+	game.width(17)
+	game.cellSize(64)
+	pantalla.iniciar()
 	game.start()
 }
