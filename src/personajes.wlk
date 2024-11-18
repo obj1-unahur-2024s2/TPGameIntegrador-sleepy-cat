@@ -27,11 +27,13 @@ object sleepyCat {
   */
 
   // Comportamiento con la llave
-  var property llave = 0
+  var property llave = false
   method obtenerLlave() {
-    llave = llave + 1
+    llave = true
     game.say(self, 'Tengo la llave !')
   }
+  // Comportamiento con la llave
+  var property juguete = false
   // Comportamiento de colision con un muro
   method choqueConMuro() {
     position = game.origin()
@@ -48,7 +50,54 @@ object sleepyCat {
 
 object gatoNegro {
   method position() = game.at(8,0) 
-  method meChocaron() {
-    
+  method colisionSleepy() {
+    if(sleepyCat.juguete()){
+      game.say(self, "Gracias !! te doy mi llave")
+      sleepyCat.juguete(false)
+      llave.dar()
+      sleepyCat.obtenerLlave()
+    }else{
+      game.say(self, "Si me traes un juguete te doy mi llave")
+      game.addVisual(juguete)
+      malaOnda.cuidarJuguete()
+    }
   }
+}
+
+object malaOnda {
+  var orientacion = arriba
+  var property position = game.at(2, 2) 
+  method image() = 'test.png'
+
+  method colisionSleepy() {
+    sleepyCat.energia(0)
+  }
+  method seEnjoja(){
+    game.say(self, 'No te subas ahí ! >:(')
+  }
+  method cuidarJuguete() {
+    position = game.at(1, 2)
+    game.onTick(500, 'patrullar', {self.patrullar()})
+  }
+  method patrullar() {
+    self.avanzar()
+    if(self.borde())
+      self.girar()
+  }
+  method avanzar() {
+    position = orientacion.adelante(position)
+  }
+  method girar() {
+    orientacion = orientacion.opuesto()
+  }
+  method borde() = position.y() == 6 or position.y() == 0
+}
+
+object arriba {
+  method adelante(posicion) = posicion.up(1)
+  method opuesto() = abajo
+}
+object abajo {
+  method adelante(posicion) = posicion.down(1)
+  method opuesto() = arriba
 }

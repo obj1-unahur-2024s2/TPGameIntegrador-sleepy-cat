@@ -23,12 +23,13 @@ object config {
   // Configuro todas las colisiones
   method colisiones() {
 	// sleepyCat
-    game.onCollideDo(sleepyCat, {objeto => objeto.meChocaron()})
+    game.onCollideDo(sleepyCat, {objeto => objeto.colisionSleepy()})
   }
   // Agrego las visuales
   method visuales() {
     murosDelimitantes.agregar()
     game.addVisual(gatoNegro)
+    game.addVisual(malaOnda)
     game.addVisual(chica1)
     game.addVisual(chica2)
     game.addVisual(llave)
@@ -113,22 +114,42 @@ object gameOverScreen {
 object llave {
   method position() = game.at(8, 0)
   method image() = 'key.png'
-  method meChocaron() {
-    game.removeVisual(self)
-    sleepyCat.obtenerLlave()
+  method dar() {
+    if(sleepyCat.llave()){
+      game.removeVisual(self)
+      sleepyCat.obtenerLlave()      
+    }
+  }
+  method colisionSleepy() {
+    
   }
 
 }
+object juguete {
+  const property position = game.at(2, 2) 
+  method image() = 'ovillo.png'
+  // Idea del juguete moviendose de forma random por el mapa
+  // method movete() {
+  //   const x = 0.randomUpTo(game.width()).truncate(0)
+  //   const y = 0.randomUpTo(game.height()).truncate(0)
+  //   position = game.at(x,y)
+  // }
+  method colisionSleepy() {
+    game.removeVisual(self)
+    sleepyCat.juguete(true)
+  }
+}
+
 object chica1 {
   method position() = game.at(7, 3)
-  method meChocaron() {
+  method colisionSleepy() {
     game.say(self, 'Aww! que lindo gato!')
     game.say(chica2, 'Nos lo quedamos :P')
   }
 }
 object chica2 {
   method position() = game.at(8, 3)
-    method meChocaron() {
+    method colisionSleepy() {
     game.say(chica1, 'Aww! que lindo gato!')
     game.say(self, 'Nos lo quedamos :P')
   }
@@ -138,10 +159,10 @@ object displayDeStats {
   method text() = 'Energia= ' + sleepyCat.energia() + ' Pos= ' + sleepyCat.position() + ' Llave= ' + sleepyCat.llave()
 
 }
-
+ /////////////////////////////////////////////// Muros /////////////////////////////////
 class MuroDelimitante{
   const property position
-  method meChocaron() {
+  method colisionSleepy() {
     sleepyCat.choqueConMuro()
   }
   // Para pruebas:
@@ -190,7 +211,7 @@ const muro63 = new MuroDelimitante(position = game.at(12, 1))
 const muro64 = new MuroDelimitante(position = game.at(13, 1))
 
 class MuroChicas inherits MuroDelimitante{
-  override method meChocaron() {
+  override method colisionSleepy() {
     sleepyCat.choqueConChicas()
   }
 }
