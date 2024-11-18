@@ -58,3 +58,16 @@
 {"error":["wollok.lang.EvaluationError wrapping TypeScript TypeError: src.personajes.sleepyCat","  at src.nivel1.config.nivel1() [src/nivel1.wlk:14]\r","  at src.nivel1.nivel1.iniciar() [src/nivel1.wlk:6]\r","  at src.game.SleepyCatGame [src/game.wpgm:4]"],"level":"info","message":"👾 Game executed src.game.SleepyCatGame on g:\\Mi unidad\\Cuatrimestre 4 - 2024\\Programacion objetos 1\\Juego tp final\\TPGameIntegrador-sleepy-cat","ok":false,"timeElapsed":362,"timestamp":"2024-10-31T02:11:47.871Z"}
 {"level":"info","message":"onRequest - completionItem/resolve","timestamp":"2024-10-31T02:12:21.715Z"}
 {"level":"info","message":"onRequest - completionItem/resolve","timestamp":"2024-10-31T02:12:22.056Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":1248,"timestamp":"2024-11-18T16:20:53.878Z"}
+{"level":"info","message":"onRequest - WORKSPACE_URI:file:///home/sofia/Facultad/Objetos1/ProyectosWollok/TPGameIntegrador-sleepy-cat","timestamp":"2024-11-18T16:20:53.894Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":598,"timestamp":"2024-11-18T16:20:54.517Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":869,"timestamp":"2024-11-18T16:20:55.417Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":484,"timestamp":"2024-11-18T16:20:55.936Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":475,"timestamp":"2024-11-18T16:20:56.419Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":1130,"timestamp":"2024-11-18T16:20:57.605Z"}
+{"level":"info","message":"⌛ Validating src/personajes.wlk","timeElapsed":2035,"timestamp":"2024-11-18T16:20:59.671Z"}
+{"level":"info","message":"⌛ Validating src/testExample.wtest","timeElapsed":787,"timestamp":"2024-11-18T16:21:00.461Z"}
+{"level":"info","message":"⌛ Validating src/game.wpgm","timeElapsed":480,"timestamp":"2024-11-18T16:21:00.942Z"}
+{"level":"info","message":"⌛ Validating src/nivel1.wlk","timeElapsed":591,"timestamp":"2024-11-18T16:21:01.534Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":1579,"timestamp":"2024-11-18T16:24:54.711Z"}
+{"level":"info","message":"⌛ Validating src/nivel1.wlk","timeElapsed":670,"timestamp":"2024-11-18T16:24:55.750Z"}
