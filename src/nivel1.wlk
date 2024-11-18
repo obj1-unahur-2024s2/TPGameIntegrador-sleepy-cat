@@ -18,7 +18,7 @@ object config {
 	  game.cellSize(64)
 	  game.boardGround("nivel1.png")
     game.addVisualCharacter(sleepyCat)
-		keyboard.space().onPressDo{finDelJuego.reinicio()}
+		keyboard.r().onPressDo{finDelJuego.reinicio()}
   }
   // Configuro todas las colisiones
   method colisiones() {
@@ -95,7 +95,7 @@ object finDelJuego {
   method reinicio() {
     if(self.perdio()){
       game.removeVisual(gameOverScreen)
-      sleepyCat.energia(30)
+      sleepyCat.energia(80)
       sleepyCat.position(game.origin())
 			if(sleepyCat.llave()>0){
         game.addVisual(llave)

@@ -3,7 +3,7 @@ import nivel1.*
 
 ////////////////////////////////////////// Personaje principal //////////////////////////////////////////
 object sleepyCat {
-  var property energia = 80
+  var property energia = 90
   method image() = if(energia > 0) 'sleepyCat' + self.estado() + '.png' else 'sleepyCatDurmiendoA.png' 
   method estado() = if(not juguete) 'A' else 'Ovillo'
 
