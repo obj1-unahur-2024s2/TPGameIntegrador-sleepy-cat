@@ -30,9 +30,11 @@ object config {
     murosDelimitantes.agregar()
     game.addVisual(gatoNegro)
     game.addVisual(malaOnda)
+    game.addVisual(maquinaExpendedora)
     game.addVisual(chica1)
     game.addVisual(chica2)
     game.addVisual(llave)
+    game.addVisual(cerradura)
     game.addVisual(displayDeStats)
   }
 }
@@ -140,6 +142,35 @@ object juguete {
   }
 }
 
+object comida{
+  const property nutrientes = 30
+
+  method position() = game.at(2, 6)
+  method image() = 'pez.png'
+  method colisionSleepy(){
+    sleepyCat.comer(self)
+  }
+}
+
+object maquinaExpendedora {
+  var tieneComida = true
+  method position() = game.at(0, 7)
+  method darComida() {
+    if(tieneComida){
+      game.addVisual(comida)
+      tieneComida = false
+      game.onTick(10000, 'delay', {self.reponerComida()})
+    }
+  }
+  method reponerComida(){
+    game.removeTickEvent('delay')
+    tieneComida = true
+  }
+  method colisionSleepy() {
+    self.darComida()
+  }
+}
+
 object chica1 {
   method position() = game.at(7, 3)
   method colisionSleepy() {
@@ -218,3 +249,18 @@ class MuroChicas inherits MuroDelimitante{
 
 const muroChica1 = new MuroChicas(position = game.at(7, 2))
 const muroChica2 = new MuroChicas(position = game.at(8, 2))
+
+object cerradura inherits MuroDelimitante(position = game.at(7, 6)){
+  override method colisionSleepy(){
+    if(sleepyCat.llave())
+      game.addVisual(puerta)
+  }
+}
+
+object puerta inherits MuroDelimitante(position = game.at(7,7)){
+  method image() = 'puertaAbierta.png'
+  override method colisionSleepy() {
+    if(sleepyCat.llave())
+      finDelJuego.perdiste()
+  } 
+}

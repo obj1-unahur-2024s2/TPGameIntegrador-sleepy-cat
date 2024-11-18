@@ -1,11 +1,18 @@
+// Comente niveles para poder probar rapido el nivel 1 
 import wollok.game.*
-import niveles.*
+// import niveles.*
+import nivel1.*
 
 program SleepyCatGame {
-	game.title("Pepita")
-	game.height(17)
-	game.width(17)
-	game.cellSize(64)
-	pantalla.iniciar()
+	nivel1.iniciar()
 	game.start()
 }
+
+// program SleepyCatGame {
+// 	game.title("Pepita")
+// 	game.height(17)
+// 	game.width(17)
+// 	game.cellSize(64)
+// 	pantalla.iniciar()
+// 	game.start()
+// }

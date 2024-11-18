@@ -3,9 +3,10 @@ import nivel1.*
 
 ////////////////////////////////////////// Personaje principal //////////////////////////////////////////
 object sleepyCat {
-  var property energia = 40
-  method image() = if(energia > 0) 'sleepyCatA.png' else 'sleepyCatDurmiendoA.png' 
-  
+  var property energia = 80
+  method image() = if(energia > 0) 'sleepyCat' + self.estado() + '.png' else 'sleepyCatDurmiendoA.png' 
+  method estado() = if(not juguete) 'A' else 'Ovillo'
+
   var position = game.at(0, 0)
   method position() = position
   method position(unaPosicion) {
@@ -17,6 +18,12 @@ object sleepyCat {
       position = unaPosicion
       energia = 0.max(energia - 1)
     }
+  }
+
+  //Comida
+  method comer(comida) {
+    energia = energia + comida.nutrientes()
+    game.removeVisual(comida)
   }
 
 	// Otra forma de resolver colisiones con muros tal vez? 
