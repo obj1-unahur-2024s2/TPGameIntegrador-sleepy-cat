@@ -1,91 +1,8 @@
+import niveles.*
 import wollok.game.*
 import personajes.*
 
 //////////////////////////////////// Configuracion general del nivel ////////////////////////////////////
-object nivel1 {
-  method iniciar() {
-    config.nivel1()
-		config.colisiones()
-		config.visuales()
-  }
-}
-
-object config {
-  method nivel1() {
-    game.title("Sleepy Game")
-	  game.height(14)
-	  game.width(16)
-	  game.cellSize(64)
-	  game.boardGround("nivel1.png")
-    game.addVisualCharacter(sleepyCat)
-		keyboard.r().onPressDo{finDelJuego.reinicio()}
-  }
-  // Configuro todas las colisiones
-  method colisiones() {
-	// sleepyCat
-    game.onCollideDo(sleepyCat, {objeto => objeto.colisionSleepy()})
-  }
-  // Agrego las visuales
-  method visuales() {
-    murosDelimitantes.agregar()
-    game.addVisual(gatoNegro)
-    game.addVisual(malaOnda)
-    game.addVisual(maquinaExpendedora)
-    game.addVisual(chica1)
-    game.addVisual(chica2)
-    game.addVisual(llave)
-    game.addVisual(cerradura)
-    game.addVisual(displayDeStats)
-  }
-}
-
-object murosDelimitantes {
-  method agregar() {
-    game.addVisual(muro0)
-    game.addVisual(muro1)
-    game.addVisual(muro2)
-    game.addVisual(muro3)
-    game.addVisual(muro4)
-    game.addVisual(muro5)
-
-    game.addVisual(muro20)
-    game.addVisual(muro21)
-    game.addVisual(muro22)
-    game.addVisual(muro23)
-    game.addVisual(muro24)
-    game.addVisual(muro25)
-
-    game.addVisual(muro30)
-    game.addVisual(muro31)
-    game.addVisual(muro32)
-    game.addVisual(muro33)
-    game.addVisual(muro34)
-    game.addVisual(muro35)
-
-    game.addVisual(muro40)
-    game.addVisual(muro41)
-    game.addVisual(muro42)
-    game.addVisual(muro43)
-    game.addVisual(muro44)  
-    game.addVisual(muro45)  
-  
-    game.addVisual(muro50)
-    game.addVisual(muro51)
-    game.addVisual(muro52)
-    game.addVisual(muro53)
-    game.addVisual(muro54)  
-    game.addVisual(muro55)  
-  
-    game.addVisual(muro60)
-    game.addVisual(muro61)
-    game.addVisual(muro62)
-    game.addVisual(muro63)
-    game.addVisual(muro64)  
-
-    game.addVisual(muroChica1)
-    game.addVisual(muroChica2)
-  }
-}
 
 object finDelJuego {
   var property perdio = false
@@ -261,6 +178,7 @@ object puerta inherits MuroDelimitante(position = game.at(7,7)){
   method image() = 'puertaAbierta.png'
   override method colisionSleepy() {
     if(sleepyCat.llave())
-      finDelJuego.perdiste()
+    game.removeTickEvent('patrullar')
+    pantalla.siguienteNivel()
   } 
 }
