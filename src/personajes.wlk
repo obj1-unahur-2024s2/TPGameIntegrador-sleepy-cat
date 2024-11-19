@@ -192,3 +192,24 @@ object izquierda {
   method enElBorde(position) = position.x() <= 0
 
 }
+
+
+//// Cajas nivel 2 ////
+
+class Caja{
+  const property position
+  var disparosRecibidos = 0
+  var image = 'caja2.png'
+
+  method recibirDisparo(){
+    disparosRecibidos += 1
+    self.cambiarImagen()
+  }
+  method image() = image
+  method cambiarImagen(){
+    if( disparosRecibidos == 1 ){ image = 'cajaRota2.png' }
+    else { game.removeVisual(self)
+          // sleepyCat.darEnergia()
+     } 
+  }
+}
