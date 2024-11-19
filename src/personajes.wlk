@@ -108,3 +108,87 @@ object abajo {
   method adelante(posicion) = posicion.down(1)
   method opuesto() = arriba
 }
+
+
+
+
+////////////////////////////////////////// Personajes enemigo //////////////////////////////////////////
+
+//game.addVisual(enemigo) en el nivel
+//game.onCollideDo(disparo, {objeto => objeto.recibirDisparo()})
+
+object enemigo {
+  var position = game.at(1,1)
+  var property vida = 5
+  var orientacion = derecha
+
+  method position() = position
+
+  method image() = if(vida <= 0) 'perroAcostado.png' else 'perroA' + orientacion.descripcion() + '.png' 
+
+
+  method initialize() {
+    game.onTick(1000, 'enemigo', {if (vida > 0) self.movimientoRandom()} )
+  }
+  
+  /*method movimientoNormal() {
+    self.avanzar()
+    if(self.llegoAlBorde()){
+      orientacion = orientacion.opuesto()
+    }
+    
+  }*/
+
+  
+  method movimientoRandom() {
+    self.avanzar()
+    if(self.llegoAlBorde() or talvez.seaCierto(20)){
+      orientacion = orientacion.opuesto()
+    }
+    
+  }
+  
+
+  method avanzar() {
+    position = orientacion.adelante(position)
+  }
+
+  method llegoAlBorde() = orientacion.enElBorde(position)
+
+  method recibirDisparo() {
+    vida = vida - 1
+    if (vida == 0){
+      self.morir()
+    }
+    else{
+      game.say(self, ">:(")
+    }
+  }
+
+  method morir() {
+    game.say(self, "Noooooo")
+    
+  }
+
+}
+
+object talvez {
+  method seaCierto(porcentaje) = 0.randomUpTo(1)*100 < porcentaje
+}
+
+object derecha {
+  method descripcion() = "Derecha"
+  method siguiente() = izquierda
+  method opuesto() = izquierda
+  method adelante(position) = position.right(1)
+  method enElBorde(position) = position.x() >= game.width()-1
+}
+
+object izquierda {
+  method descripcion() = "Izquierda"
+  method siguiente() = derecha
+  method opuesto() = derecha
+  method adelante(position) = position.left(1)
+  method enElBorde(position) = position.x() <= 0
+
+}
