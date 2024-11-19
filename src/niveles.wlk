@@ -1,5 +1,6 @@
 import wollok.game.*
 import nivel1.*
+import nivel2.*
 import personajes.*
 
 object pantalla {
@@ -209,7 +210,7 @@ object nivel2
     game.addVisual(muro0)
     game.addVisual(muro1)
     game.addVisual(muro2)
-    game.addVisualCharacter(sleepyCat)
+    game.addVisual(sleepyCat)
   }
   method retirarVisuales(){
     game.removeVisual(self)

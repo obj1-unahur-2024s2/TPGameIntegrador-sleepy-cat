@@ -2,6 +2,7 @@
 import wollok.game.*
 import niveles.*
 import nivel1.*
+import nivel2.*
 
 // program SleepyCatGame {
 // 	nivel1.iniciar()

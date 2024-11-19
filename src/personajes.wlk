@@ -25,8 +25,9 @@ object sleepyCat {
     energia = energia + comida.nutrientes()
     game.removeVisual(comida)
   }
+////////////////////////////////////////// Personaje Nivel 2 //////////////////////////////////////////
 
-	// Otra forma de resolver colisiones con muros tal vez? 
+// Otra forma de resolver colisiones con muros tal vez? 
   /*
   var property position = game.origin() 
   const posColision = [[4,4], [0,1]]
@@ -52,7 +53,113 @@ object sleepyCat {
     game.say(self, 'Los mimos me dan sueño')
   }
 }
+object sleepyCat2 {
+  var energia = 90
+  var property position = game.origin()
+  const property balas = [bala1, bala2, bala3, bala4, bala5]
+  method image() = if(energia > 0) 'sleepyCat.png' else 'sleepyCatDurmiendoA.png'
+  method izquierda(){
+   position = position.left(1)
+  }
+  method derecha(){
+   position = position.right(1)
+  }
+  method tieneEnergia(){
+    if(energia < 0){
+      game.removeVisual(self)
+    }
+  }
+  method darEnergia(){
+    energia = energia + 5
+  }
+  method ataque(){
+    energia = energia - 1
+    const balaUsada = balas.first()
+    balaUsada.cambiarPosition(self.position())
+    balas.remove(balaUsada)
+    game.addVisual(balaUsada)
+    balaUsada.activarMovimiento()
+    self.tieneEnergia()
+  }
+  method colision(tap){
 
+  }
+  
+}
+//BALAS
+object bala1 {
+  var property position = sleepyCat2.position()
+  const property nombreTick = "Mov1"
+  method image() = "ball.png"
+  method moverAdelante(){
+    position = position.right(1)
+  }
+  method cambiarPosition(pos){
+    position = pos
+  }
+  method activarMovimiento(){
+    game.onTick(500, nombreTick, {self.moverAdelante()})
+  }
+}
+object bala2 {
+  var property position = sleepyCat2.position()
+  const property nombreTick = "Mov2"
+  method image() = "ball.png"
+  method moverAdelante(){
+    position = position.right(1)
+  }
+  method cambiarPosition(pos){
+    position = pos
+  }
+  method activarMovimiento(){
+    game.onTick(500, nombreTick, {self.moverAdelante()})
+  }
+}
+
+object bala3 {
+  var property position = sleepyCat2.position()
+  const property nombreTick = "Mov3"
+  method image() = "ball.png"
+  method moverAdelante(){
+    position = position.right(1)
+  }
+  method cambiarPosition(pos){
+    position = pos
+  }
+  method activarMovimiento(){
+    game.onTick(500, nombreTick, {self.moverAdelante()})
+  }
+}
+
+object bala4 {
+  var property position = sleepyCat2.position()
+  const property nombreTick = "Mov4"
+  method image() = "ball.png"
+  method moverAdelante(){
+    position = position.right(1)
+  }
+  method cambiarPosition(pos){
+    position = pos
+  }
+  method activarMovimiento(){
+    game.onTick(500, nombreTick, {self.moverAdelante()})
+  }
+}
+
+object bala5 {
+  var property position = sleepyCat2.position()
+  const property nombreTick = "Mov5"
+  method image() = "ball.png"
+  method moverAdelante(){
+    position = position.right(1)
+  }
+  method cambiarPosition(pos){
+    position = pos
+  }
+  method activarMovimiento(){
+    game.onTick(500, nombreTick, {self.moverAdelante()})
+  }
+}
 ////////////////////////////////////////// Personajes secundarios //////////////////////////////////////////
 
 object gatoNegro {
@@ -155,8 +262,9 @@ object enemigo {
 
   method llegoAlBorde() = orientacion.enElBorde(position)
 
-  method recibirDisparo() {
+  method recibirDisparo(bal) {
     vida = vida - 1
+    sleepyCat2.balas().add(bal)
     if (vida == 0){
       self.morir()
     }
@@ -201,9 +309,10 @@ class Caja{
   var disparosRecibidos = 0
   var image = 'caja2.png'
 
-  method recibirDisparo(){
+  method recibirDisparo(bal){
     disparosRecibidos += 1
     self.cambiarImagen()
+    sleepyCat2.balas().add(bal)
   }
   method image() = image
   method cambiarImagen(){
