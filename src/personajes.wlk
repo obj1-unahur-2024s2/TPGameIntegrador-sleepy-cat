@@ -302,23 +302,3 @@ object izquierda {
 }
 
 
-//// Cajas nivel 2 ////
-
-class Caja{
-  const property position
-  var disparosRecibidos = 0
-  var image = 'caja2.png'
-
-  method recibirDisparo(bal){
-    disparosRecibidos += 1
-    self.cambiarImagen()
-    sleepyCat2.balas().add(bal)
-  }
-  method image() = image
-  method cambiarImagen(){
-    if( disparosRecibidos == 1 ){ image = 'cajaRota2.png' }
-    else { game.removeVisual(self)
-          // sleepyCat.darEnergia()
-     } 
-  }
-}

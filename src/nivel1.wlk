@@ -108,14 +108,6 @@ object displayDeStats {
 
 }
  /////////////////////////////////////////////// Muros /////////////////////////////////
-class MuroDelimitante{
-  const property position
-  method colisionSleepy() {
-    sleepyCat.choqueConMuro()
-  }
-  // Para pruebas:
-  // method image() = 'test-edit.png' 
-}
 
 const muro0 = new MuroDelimitante(position = game.at(2, 1))
 const muro1 = new MuroDelimitante(position = game.at(3, 1))

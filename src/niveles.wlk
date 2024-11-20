@@ -206,11 +206,17 @@ object nivel2
   method image() = "nivel2B.png"
 
   method agregarVisuales() {
-    game.addVisual(self)
-    game.addVisual(muro0)
-    game.addVisual(muro1)
-    game.addVisual(muro2)
-    game.addVisual(sleepyCat)
+    game.addVisual(sleepyCat2)
+    game.addVisual(enemigo)
+    game.addVisual(caja1)
+    keyboard.right().onPressDo({sleepyCat2.derecha()})
+    keyboard.left().onPressDo({sleepyCat2.izquierda()})
+    keyboard.space().onPressDo({sleepyCat2.ataque()})
+    game.onCollideDo(bala1, {p => p.recibirDisparo(bala1)})
+    game.onCollideDo(bala2, {p => p.recibirDisparo(bala2)})
+    game.onCollideDo(bala3, {p => p.recibirDisparo(bala3)})
+    game.onCollideDo(bala4, {p => p.recibirDisparo(bala4)})
+    game.onCollideDo(bala5, {p => p.recibirDisparo(bala5)})
   }
   method retirarVisuales(){
     game.removeVisual(self)
@@ -225,5 +231,14 @@ object nivel2
 
   //method musicaDeFondo()=game.sound("battle2.mp3")
   //var property seReprodujoElFondo=false
+}
+
+class MuroDelimitante{
+  const property position
+  method colisionSleepy() {
+    sleepyCat.choqueConMuro()
+  }
+  // Para pruebas:
+  // method image() = 'test-edit.png' 
 }
 
