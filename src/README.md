@@ -22,5 +22,8 @@ Para ganar el juego hay que atravezar diferentes pisos de un edificio hasta lleg
 ## Otros
 
 - Curso/Facultad
+- Curso: Programacion con Objetos I
+- Universidad: UNIVERSIDAD NACIONAL DE HURLINGHAM
 - Versión de wollok
-- Una vez terminado, no tenemos problemas en que el repositorio sea público / queremos manternerlo privado
+- 
+- Una vez terminado, queremos manternerlo privado
