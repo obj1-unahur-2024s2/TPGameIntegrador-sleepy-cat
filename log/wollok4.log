@@ -628,3 +628,4 @@
 {"level":"info","message":"onRequest - completionItem/resolve","timestamp":"2024-11-20T00:34:51.654Z"}
 {"level":"info","message":"onRequest - completionItem/resolve","timestamp":"2024-11-20T00:34:51.795Z"}
 {"level":"info","message":"onRequest - completionItem/resolve","timestamp":"2024-11-20T00:34:51.952Z"}
+{"exitCode":{"address":"::","code":"EADDRINUSE","errno":-4091,"port":4200,"syscall":"listen"},"level":"info","message":"👾 Game executed src.game.SleepyCatGame on c:\\Users\\user\\Unahur\\TPGameInt\\TPGameIntegrador-sleepy-cat","timeElapsed":541,"timestamp":"2024-11-20T00:53:31.175Z"}

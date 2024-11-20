@@ -206,9 +206,10 @@ object nivel2
   method image() = "nivel2B.png"
 
   method agregarVisuales() {
-    game.addVisual(sleepyCat2)
     game.addVisual(enemigo)
     game.addVisual(caja1)
+    game.addVisual(self)
+    game.addVisual(sleepyCat2)
     keyboard.right().onPressDo({sleepyCat2.derecha()})
     keyboard.left().onPressDo({sleepyCat2.izquierda()})
     keyboard.space().onPressDo({sleepyCat2.ataque()})

@@ -92,7 +92,7 @@ object bala1 {
   const property nombreTick = "Mov1"
   method image() = "ball.png"
   method moverAdelante(){
-    position = position.right(1)
+    position = position.up(1)
   }
   method cambiarPosition(pos){
     position = pos
@@ -106,7 +106,7 @@ object bala2 {
   const property nombreTick = "Mov2"
   method image() = "ball.png"
   method moverAdelante(){
-    position = position.right(1)
+    position = position.up(1)
   }
   method cambiarPosition(pos){
     position = pos
@@ -121,7 +121,7 @@ object bala3 {
   const property nombreTick = "Mov3"
   method image() = "ball.png"
   method moverAdelante(){
-    position = position.right(1)
+    position = position.up(1)
   }
   method cambiarPosition(pos){
     position = pos
@@ -136,7 +136,7 @@ object bala4 {
   const property nombreTick = "Mov4"
   method image() = "ball.png"
   method moverAdelante(){
-    position = position.right(1)
+    position = position.up(1)
   }
   method cambiarPosition(pos){
     position = pos
@@ -151,7 +151,7 @@ object bala5 {
   const property nombreTick = "Mov5"
   method image() = "ball.png"
   method moverAdelante(){
-    position = position.right(1)
+    position = position.up(1)
   }
   method cambiarPosition(pos){
     position = pos
@@ -225,7 +225,7 @@ object abajo {
 //game.onCollideDo(disparo, {objeto => objeto.recibirDisparo()})
 
 object enemigo {
-  var position = game.at(1,1)
+  var position = game.at(1,14)
   var property vida = 5
   var orientacion = derecha
 
