@@ -162,16 +162,16 @@ object enemigo {
 
 
   method initialize() {
-    game.onTick(1000, 'enemigo', {if (vida > 0) self.movimientoRandom()} )
+    game.onTick(1000, 'enemigo', {if (vida > 0) self.movimientoNormal()} )
   }
   
-  /*method movimientoNormal() {
+ method movimientoNormal() {
     self.avanzar()
     if(self.llegoAlBorde()){
       orientacion = orientacion.opuesto()
     }
     
-  }*/
+  }
 
   
   method movimientoRandom() {
@@ -216,7 +216,7 @@ object derecha {
   method siguiente() = izquierda
   method opuesto() = izquierda
   method adelante(position) = position.right(1)
-  method enElBorde(position) = position.x() >= game.width()-1
+  method enElBorde(position) = position.x() >= 13
 }
 
 object izquierda {
@@ -224,7 +224,7 @@ object izquierda {
   method siguiente() = derecha
   method opuesto() = derecha
   method adelante(position) = position.left(1)
-  method enElBorde(position) = position.x() <= 0
+  method enElBorde(position) = position.x() <= 2
 
 }
 

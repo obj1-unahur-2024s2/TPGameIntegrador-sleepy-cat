@@ -150,6 +150,8 @@ const muro62 = new MuroDelimitante(position = game.at(11, 1))
 const muro63 = new MuroDelimitante(position = game.at(12, 1))
 const muro64 = new MuroDelimitante(position = game.at(13, 1))
 
+
+
 class MuroChicas inherits MuroDelimitante{
   override method colisionSleepy() {
     sleepyCat.choqueConChicas()

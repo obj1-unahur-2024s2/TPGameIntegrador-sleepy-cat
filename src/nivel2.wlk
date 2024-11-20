@@ -101,3 +101,19 @@ object bala5 {
   }
 }
 
+const muro110 = new MuroDelimitante(position = game.at(0, 14))
+const muro111 = new MuroDelimitante(position = game.at(1, 14))
+const muro112 = new MuroDelimitante(position = game.at(2, 14))
+const muro113 = new MuroDelimitante(position = game.at(3, 14))
+const muro114 = new MuroDelimitante(position = game.at(4, 14))
+const muro115 = new MuroDelimitante(position = game.at(5, 14))
+const muro116 = new MuroDelimitante(position = game.at(6, 14))
+const muro117 = new MuroDelimitante(position = game.at(7, 14))
+const muro118 = new MuroDelimitante(position = game.at(8, 14))
+const muro119 = new MuroDelimitante(position = game.at(9, 14))
+const muro120= new MuroDelimitante(position = game.at(10, 14))
+const muro121= new MuroDelimitante(position = game.at(11, 14))
+const muro122= new MuroDelimitante(position = game.at(12, 14))
+const muro123= new MuroDelimitante(position = game.at(13, 14))
+const muro124 = new MuroDelimitante(position = game.at(14, 14))
+const muro125 = new MuroDelimitante(position = game.at(15, 14))

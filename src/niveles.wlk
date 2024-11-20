@@ -210,6 +210,7 @@ object nivel2
     game.addVisual(enemigo)
     game.addVisual(caja1)
     game.addVisual(sleepyCat2)
+    murosDelimitantes2.agregar()
     keyboard.right().onPressDo({sleepyCat2.derecha()})
     keyboard.left().onPressDo({sleepyCat2.izquierda()})
     keyboard.space().onPressDo({sleepyCat2.ataque()})
@@ -239,7 +240,32 @@ class MuroDelimitante{
   method colisionSleepy() {
     sleepyCat.choqueConMuro()
   }
+
+  method recibirDisparo(bal) {
+    sleepyCat2.balas().add(bal)
+  }
   // Para pruebas:
   // method image() = 'test-edit.png' 
 }
 
+
+object murosDelimitantes2 {
+  method agregar() {
+    game.addVisual(muro110)
+    game.addVisual(muro111)
+    game.addVisual(muro112)
+    game.addVisual(muro113)
+    game.addVisual(muro114)
+    game.addVisual(muro115)
+    game.addVisual(muro116)
+    game.addVisual(muro117)
+    game.addVisual(muro118)
+    game.addVisual(muro119)
+    game.addVisual(muro120)
+    game.addVisual(muro121)
+    game.addVisual(muro122)
+    game.addVisual(muro123)
+    game.addVisual(muro124)
+    game.addVisual(muro125)
+    }
+    }
