@@ -16,7 +16,7 @@
 ## Reglas de Juego / Instrucciones
 
 El juego consiste en atravezar diferentes niveles hasta llegar al ultimo y derrotar al jefe.
-Nuestro personaje principal es "Sleepy", un gato dormilon. 
+Nuestro personaje principal es "Sleepy", un gato dormilon que es capaz de disparar bolas de pelos contra aquellos que lo amenacen. 
 Para ganar el juego hay que atravezar diferentes pisos de un edificio hasta llegar al tejado donde aguarda el premio. Durante el camino hay que resolver pequeños puzles y sobre todo alimentar a sleepy para que no se quede sin energia y se quede dormido. 
 
 ## Otros
