@@ -98,6 +98,7 @@ object gatoNegro {
       sleepyCat.juguete(false)
       llave.dar()
       sleepyCat.obtenerLlave()
+      game.removeVisual(llave)
     }else{
       game.say(self, "Si me traes un juguete te doy mi llave")
       game.addVisual(juguete)
@@ -109,7 +110,7 @@ object gatoNegro {
 object malaOnda {
   var orientacion = arriba
   var property position = game.at(2, 2) 
-  method image() = 'test.png'
+  method image() = 'malaOnda1.png'
 
   method colisionSleepy() {
     sleepyCat.energia(0)
