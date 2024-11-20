@@ -54,6 +54,7 @@ object bala2 {
   method activarMovimiento(){
     game.onTick(100, nombreTick, {self.moverAdelante()})
   }
+  method recibirDisparo(unaBala){}
 }
 
 object bala3 {
@@ -69,6 +70,7 @@ object bala3 {
   method activarMovimiento(){
     game.onTick(100, nombreTick, {self.moverAdelante()})
   }
+  method recibirDisparo(unaBala){}
 }
 
 object bala4 {
@@ -84,6 +86,7 @@ object bala4 {
   method activarMovimiento(){
     game.onTick(100, nombreTick, {self.moverAdelante()})
   }
+  method recibirDisparo(unaBala){}
 }
 
 object bala5 {
@@ -99,6 +102,7 @@ object bala5 {
   method activarMovimiento(){
     game.onTick(100, nombreTick, {self.moverAdelante()})
   }
+  method recibirDisparo(unaBala){}
 }
 
 const muro110 = new MuroDelimitante(position = game.at(0, 14))

@@ -1,3 +1,4 @@
+import niveles.*
 import wollok.game.*
 import nivel1.*
 import nivel2.*
@@ -202,7 +203,8 @@ object enemigo {
 
   method morir() {
     game.say(self, "Noooooo")
-    
+    game.removeTickEvent('enemigo')
+    pantalla.siguienteNivel()
   }
 
 }

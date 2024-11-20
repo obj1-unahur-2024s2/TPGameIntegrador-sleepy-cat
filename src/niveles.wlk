@@ -23,8 +23,7 @@ object pantalla {
 		keyboard.r().onPressDo{finDelJuego.reinicio()}
     // Para saltar niveles
     keyboard.n().onPressDo({self.siguienteNivel()})
-    keyboard.enter().onPressDo({if(nivelActual.descripcion() == 0)self.siguienteNivel()})
-
+    keyboard.enter().onPressDo({if(self.condicionEnter()) self.siguienteNivel()})
     game.addVisual(nivelActual)
     //nivelActual.musicaDeFondo().shouldLoop(true)
     //nivelActual.musicaDeFondo().play()
@@ -40,6 +39,12 @@ object pantalla {
 		})
     */
   }
+  method condicionEnter() = 
+    nivelActual.descripcion() == 0 or
+    nivelActual.descripcion() == 0.5 or
+    nivelActual.descripcion() == 1.5 or
+    nivelActual.descripcion() == 3
+
   method siguienteNivel(){
     nivelActual.retirarVisuales()
     //nivelActual.seReprodujoElFondo(false)
@@ -54,9 +59,27 @@ object pantalla {
 object pantallaDeInicio
 {
     method descripcion() = 0
-    method siguiente()=nivel1
+    method siguiente()=instrucciones1
     method position()=game.origin()
     method image()="inicio.png"
+
+    method retirarVisuales() {
+      game.removeVisual(self)
+    }
+    method agregarVisuales(){
+      game.addVisual(self)
+    }
+
+    //method musicaDeFondo()=game.sound("menu.mp3")
+    //var property seReprodujoElFondo=false
+}
+
+object instrucciones1
+{
+    method descripcion() = 0.5
+    method siguiente() = nivel1
+    method position() = game.origin()
+    method image() = "nivel1Lore.png"
 
     method retirarVisuales() {
       game.removeVisual(self)
@@ -71,7 +94,7 @@ object pantallaDeInicio
 object nivel1
 {
   method descripcion() = 1
-  method siguiente() = nivel2
+  method siguiente() = instrucciones2
   method position() = game.origin()
   method image() = "nivel1.png"
   method colisionSleepy(){}
@@ -198,10 +221,28 @@ object murosDelimitantes {
   }
 }
 
+object instrucciones2
+{
+    method descripcion() = 1.5
+    method siguiente() = nivel2
+    method position() = game.origin()
+    method image() = "nivel2Lore.png"
+
+    method retirarVisuales() {
+      game.removeVisual(self)
+    }
+    method agregarVisuales(){
+      game.addVisual(self)
+    }
+  
+    //method musicaDeFondo()=game.sound("menu.mp3")
+    //var property seReprodujoElFondo=false
+}
+
 object nivel2
 {
   method descripcion() = 2
-  method siguiente() = pantallaDeInicio
+  method siguiente() = pantallaFinal
   method position() = game.origin()
   method image() = "nivel2B.png"
 
@@ -267,5 +308,24 @@ object murosDelimitantes2 {
     game.addVisual(muro123)
     game.addVisual(muro124)
     game.addVisual(muro125)
+  }
+}
+
+object pantallaFinal
+{
+    method descripcion() = 3
+    method siguiente() = pantallaDeInicio
+    method position() = game.origin()
+    method image() = "ganaste.png"
+
+    method retirarVisuales() {
+      game.removeVisual(self)
     }
+    method agregarVisuales(){
+      game.addVisual(self)
     }
+
+    //method musicaDeFondo()=game.sound("menu.mp3")
+    //var property seReprodujoElFondo=false
+}
+
