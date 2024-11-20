@@ -25,7 +25,7 @@ object finDelJuego {
 
 object gameOverScreen {
   method position() = game.origin()
-  method image() = 'gameOver.jpg'
+  method image() = 'gameOver2.jpg'
 }
 
 //////////////////////////////////// Objetos del nivel 1 ////////////////////////////////////
