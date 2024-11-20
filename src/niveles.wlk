@@ -201,7 +201,7 @@ object murosDelimitantes {
 object nivel2
 {
   method descripcion() = 2
-  method siguiente() = pantallaDeInicio
+  method siguiente() = pantallaFinal
   method position() = game.origin()
   method image() = "nivel2B.png"
 
@@ -269,3 +269,22 @@ object murosDelimitantes2 {
     game.addVisual(muro125)
     }
     }
+
+
+object pantallaFinal
+{
+    method descripcion() = 3
+    method siguiente()=pantallaDeInicio
+    method position()=game.origin()
+    method image()="ganaste.png"
+
+    method retirarVisuales() {
+      game.removeVisual(self)
+    }
+    method agregarVisuales(){
+      game.addVisual(self)
+    }
+
+    //method musicaDeFondo()=game.sound("menu.mp3")
+    //var property seReprodujoElFondo=false
+}
