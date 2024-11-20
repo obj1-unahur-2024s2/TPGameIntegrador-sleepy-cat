@@ -275,7 +275,23 @@ object nivel2
   //method musicaDeFondo()=game.sound("battle2.mp3")
   //var property seReprodujoElFondo=false
 }
+object pantallaFinal
+{
+    method descripcion() = 3
+    method siguiente() = pantallaDeInicio
+    method position() = game.origin()
+    method image() = "ganaste.png"
 
+    method retirarVisuales() {
+      game.removeVisual(self)
+    }
+    method agregarVisuales(){
+      game.addVisual(self)
+    }
+  
+    //method musicaDeFondo()=game.sound("menu.mp3")
+    //var property seReprodujoElFondo=false
+}
 class MuroDelimitante{
   const property position
   method colisionSleepy() {
