@@ -11,8 +11,8 @@ import nivel2.*
 
 program SleepyCatGame {
 	game.title("SleepyGame")
-	game.height(17)
-	game.width(17)
+	game.height(14)
+	game.width(16)
 	game.cellSize(64)
 	pantalla.iniciar()
 	game.start()

@@ -1,5 +1,7 @@
 import wollok.game.*
 import nivel1.*
+import nivel2.*
+
 
 ////////////////////////////////////////// Personaje principal //////////////////////////////////////////
 object sleepyCat {
@@ -55,9 +57,9 @@ object sleepyCat {
 }
 object sleepyCat2 {
   var energia = 90
-  var property position = game.origin()
+  var property position = game.at(2,1)
   const property balas = [bala1, bala2, bala3, bala4, bala5]
-  method image() = if(energia > 0) 'sleepyCat.png' else 'sleepyCatDurmiendoA.png'
+  method image() = if(energia > 0) 'sleepyCatA.png' else 'sleepyCatDurmiendoA.png'
   method izquierda(){
    position = position.left(1)
   }
@@ -81,85 +83,10 @@ object sleepyCat2 {
     balaUsada.activarMovimiento()
     self.tieneEnergia()
   }
-  method colision(tap){
-
-  }
-  
-}
-//BALAS
-object bala1 {
-  var property position = sleepyCat2.position()
-  const property nombreTick = "Mov1"
-  method image() = "ball.png"
-  method moverAdelante(){
-    position = position.up(1)
-  }
-  method cambiarPosition(pos){
-    position = pos
-  }
-  method activarMovimiento(){
-    game.onTick(500, nombreTick, {self.moverAdelante()})
-  }
-}
-object bala2 {
-  var property position = sleepyCat2.position()
-  const property nombreTick = "Mov2"
-  method image() = "ball.png"
-  method moverAdelante(){
-    position = position.up(1)
-  }
-  method cambiarPosition(pos){
-    position = pos
-  }
-  method activarMovimiento(){
-    game.onTick(500, nombreTick, {self.moverAdelante()})
-  }
+  method colision(tap){}
+  method recibirDisparo(bal){}
 }
 
-object bala3 {
-  var property position = sleepyCat2.position()
-  const property nombreTick = "Mov3"
-  method image() = "ball.png"
-  method moverAdelante(){
-    position = position.up(1)
-  }
-  method cambiarPosition(pos){
-    position = pos
-  }
-  method activarMovimiento(){
-    game.onTick(500, nombreTick, {self.moverAdelante()})
-  }
-}
-
-object bala4 {
-  var property position = sleepyCat2.position()
-  const property nombreTick = "Mov4"
-  method image() = "ball.png"
-  method moverAdelante(){
-    position = position.up(1)
-  }
-  method cambiarPosition(pos){
-    position = pos
-  }
-  method activarMovimiento(){
-    game.onTick(500, nombreTick, {self.moverAdelante()})
-  }
-}
-
-object bala5 {
-  var property position = sleepyCat2.position()
-  const property nombreTick = "Mov5"
-  method image() = "ball.png"
-  method moverAdelante(){
-    position = position.up(1)
-  }
-  method cambiarPosition(pos){
-    position = pos
-  }
-  method activarMovimiento(){
-    game.onTick(500, nombreTick, {self.moverAdelante()})
-  }
-}
 ////////////////////////////////////////// Personajes secundarios //////////////////////////////////////////
 
 object gatoNegro {
@@ -225,7 +152,7 @@ object abajo {
 //game.onCollideDo(disparo, {objeto => objeto.recibirDisparo()})
 
 object enemigo {
-  var position = game.at(1,14)
+  var position = game.at(2,12)
   var property vida = 5
   var orientacion = derecha
 
