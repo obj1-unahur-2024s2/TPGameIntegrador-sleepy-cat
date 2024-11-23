@@ -2,33 +2,41 @@ import wollok.game.*
 import nivel1.*
 import nivel2.*
 import personajes.*
+import musica.*
 
 object pantalla {
   var nivelActual = pantallaDeInicio
+  method nivelActual() = nivelActual
   var property perdio = false
 
   method iniciar() {
     var personajeActivo = false
     //Teclas del juego
+    game.schedule(1000, {musica.comenzar()})
+    keyboard.p().onPressDo{musica.comenzar()}
 		keyboard.r().onPressDo{nivelActual.reinicio()}
     keyboard.enter().onPressDo({if(self.condicionEnter()) self.siguienteNivel()})
+    keyboard.e().onPressDo({if(self.condicionInteraccion(sleepyCat2.ultimoInteractuable())) sleepyCat2.ultimoInteractuable().interactuar()})
     //Teclas para testing
     keyboard.q().onPressDo{ //Para reiniciar la visual de sleepy 1
       if(personajeActivo){
-        game.removeVisual(sleepyCat)
+        game.removeVisual(sleepyCat2)
         personajeActivo = false
       }else{
-        game.addVisualCharacter(sleepyCat)
+        game.addVisualCharacter(sleepyCat2)
         personajeActivo = true
       }
     }
     keyboard.n().onPressDo({self.siguienteNivel()}) // Para saltar niveles
 
     // Mecanicas de sleepy 1 y 2
-    game.onCollideDo(sleepyCat, {objeto => objeto.colisionSleepy()})
+    game.onCollideDo(sleepyCat2, {objeto => objeto.colisionSleepy()})
+
     keyboard.right().onPressDo({sleepyCat2.derecha()})
     keyboard.left().onPressDo({sleepyCat2.izquierda()})
-    keyboard.space().onPressDo({sleepyCat2.ataque()})
+    keyboard.up().onPressDo({sleepyCat2.arriba()})
+    keyboard.down().onPressDo({sleepyCat2.abajo()})
+    keyboard.space().onPressDo({if(self.condicionAtaque()) sleepyCat2.ataque()})
     // Mecanicas de las balas
     game.onCollideDo(bala1, {p => p.recibirDisparo(bala1)})
     game.onCollideDo(bala2, {p => p.recibirDisparo(bala2)})
@@ -50,15 +58,23 @@ object pantalla {
 		})
     */
   }
+
+  // Validaciones 
   method condicionEnter() = nivelActual.descripcion() != 1 and nivelActual.descripcion() != 2
-  
+  method condicionAtaque() = nivelActual.descripcion() == 2
+  method condicionInteraccion(unObjeto) =  sleepyCat2.position() == unObjeto.position()
+
+  // Pasar a siguiente nivel
   method siguienteNivel(){
+    musica.terminar()
     nivelActual.retirarVisuales()
     //nivelActual.seReprodujoElFondo(false)
     //nivelActual.musicaDeFondo().stop()
-    nivelActual=nivelActual.siguiente()
+    nivelActual = nivelActual.siguiente()
+    musica.cambiarMusica(nivelActual.musica())
     //nivelActual.musicaDeFondo().shouldLoop(true)
     //nivelActual.musicaDeFondo().play()
+    musica.comenzar()
     nivelActual.agregarVisuales()
   }
   method perdiste() {
@@ -74,20 +90,31 @@ object gameOverScreen {
 
 object displayDeStats {
   method position() = game.at(1, 12)
-  method text() = 'Energia= ' + sleepyCat.energia() + ' Pos= ' + sleepyCat.position() + ' Llave= ' + sleepyCat.llave()
+  method text() = 'Energia= ' + sleepyCat2.energia() + ' Pos= ' + sleepyCat2.position() + ' Llave= ' + sleepyCat2.llave()
   method textColor() = paleta.rojo()
 }
 object paleta {
   const property rojo = "FF0000FF"
 }
-
+// object musica {
+//   method iniciar(musicaDelNivel){
+//     const musica = musicaDelNivel
+//     musica.shouldLoop(true)
+//     musica.play()
+//   }
+//   method parar(musicaDelNivel) {
+//     const cancion = musicaDelNivel
+//     cancion.stop()
+//   }
+// }
 ////////////////////////////////////////////// Niveles ///////////////////////////////////
 object pantallaDeInicio
 {
     method descripcion() = 0
-    method siguiente()=instrucciones1
-    method position()=game.origin()
-    method image()="inicio.png"
+    method musica() = game.sound('menu.mp3')
+    method siguiente() = instrucciones1
+    method position() = game.origin()
+    method image() = "inicio.png"
 
     method retirarVisuales() {
       game.removeVisual(self)
@@ -95,6 +122,7 @@ object pantallaDeInicio
     method agregarVisuales(){
       game.addVisual(self)
     }
+    
     method reinicio() {}
 
     //method musicaDeFondo()=game.sound("menu.mp3")
@@ -104,6 +132,7 @@ object pantallaDeInicio
 object instrucciones1
 {
     method descripcion() = 0.5
+    method musica() = game.sound('menu.mp3')
     method siguiente() = nivel1
     method position() = game.origin()
     method image() = "nivel1Lore.png"
@@ -120,22 +149,24 @@ object instrucciones1
 }
 object nivel1 {
   method descripcion() = 1
+  method musica() = game.sound('battle.mp3')
   method siguiente() = instrucciones2
   method position() = game.origin()
   method image() = "nivel1.png"
+
   method colisionSleepy(){}
   method reinicio() {
     if(pantalla.perdio()){
       game.removeVisual(gameOverScreen)
-      sleepyCat.energia(80)
-      sleepyCat.position(game.origin())
-			if(sleepyCat.llave()){
+      sleepyCat2.energia(80)
+      sleepyCat2.position(game.origin())
+			if(sleepyCat2.llave()){
         game.addVisual(llave)
-        sleepyCat.llave(false)
+        sleepyCat2.llave(false)
       }
-      if(sleepyCat.juguete()){
+      if(sleepyCat2.juguete()){
         game.addVisual(juguete)
-        sleepyCat.juguete(false)
+        sleepyCat2.juguete(false)
       }
       pantalla.perdio(false)
     } 
@@ -151,7 +182,7 @@ object nivel1 {
     game.addVisual(llave)
     game.addVisual(cerradura)
     game.addVisual(displayDeStats)
-    game.addVisualCharacter(sleepyCat)
+    game.addVisualCharacter(sleepyCat2)
   }
   method retirarVisuales() {
     game.removeVisual(self)
@@ -164,7 +195,7 @@ object nivel1 {
     game.removeVisual(cerradura)
     game.removeVisual(puerta)
     game.removeVisual(displayDeStats)
-    game.removeVisual(sleepyCat)
+    game.removeVisual(sleepyCat2)
     murosDelimitantes.quitar()
   }
   //method musicaDeFondo()=game.sound("battle.mp3")
@@ -267,6 +298,7 @@ object murosDelimitantes {
 object instrucciones2
 {
     method descripcion() = 1.5
+    method musica() = game.sound('menu.mp3')
     method siguiente() = nivel2
     method position() = game.origin()
     method image() = "nivel2Lore.png"
@@ -286,13 +318,14 @@ object instrucciones2
 object nivel2
 {
   method descripcion() = 2
+  method musica() = game.sound('battle2.mp3')
   method siguiente() = pantallaFinal
   method position() = game.origin()
   method image() = "nivel2B.png"
   method reinicio() {
     if(pantalla.perdio()){
-      sleepyCat.energia(80)
-      sleepyCat.position(game.at(1, 7))
+      sleepyCat2.energia(80)
+      sleepyCat2.position(game.at(1, 7))
       pantalla.perdio(false)
       game.removeVisual(gameOverScreen)
     }
@@ -303,6 +336,7 @@ object nivel2
     game.addVisual(enemigo)
     game.addVisual(caja1)
     game.addVisual(sleepyCat2)
+    sleepyCat2.position(game.at(7,1))
     game.addVisual(displayDeStats)
     murosDelimitantes2.agregar()
   }
@@ -324,6 +358,7 @@ object nivel2
 object pantallaFinal
 {
     method descripcion() = 3
+    method musica() = game.sound('menu.mp3')
     method siguiente() = pantallaDeInicio
     method position() = game.origin()
     method image() = "ganaste.png"
@@ -337,12 +372,10 @@ object pantallaFinal
     }
     method reinicio() {}
     method resetGeneral() {
-      sleepyCat.llave(false)
-      sleepyCat.juguete(false)
-      sleepyCat.energia(90)
+      sleepyCat2.llave(false)
+      sleepyCat2.juguete(false)
       sleepyCat2.energia(90)
-      sleepyCat.position().origin()
-      sleepyCat2.position(game.at(7,1))
+      sleepyCat2.position().origin()
       enemigo.position(game.at(2,12))
       malaOnda.position(game.at(2,2))
     }
@@ -352,7 +385,7 @@ object pantallaFinal
 class MuroDelimitante{
   const property position
   method colisionSleepy() {
-    sleepyCat.choqueConMuro()
+    sleepyCat2.choqueConMuro()
   }
 
   method recibirDisparo(bal) {

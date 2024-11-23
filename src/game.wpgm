@@ -1,4 +1,5 @@
-// Comente niveles para poder probar rapido el nivel 1 
+import personajes.*
+import musica.*
 import wollok.game.*
 import niveles.*
 import nivel1.*

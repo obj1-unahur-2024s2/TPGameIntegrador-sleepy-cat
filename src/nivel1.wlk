@@ -9,9 +9,9 @@ object llave {
   method position() = game.at(8, 0)
   method image() = 'key.png'
   method dar() {
-    if(sleepyCat.llave()){
+    if(sleepyCat2.llave()){
       game.removeVisual(self)
-      sleepyCat.obtenerLlave()      
+      sleepyCat2.obtenerLlave()      
     }
   }
   method colisionSleepy() {
@@ -30,7 +30,7 @@ object juguete {
   // }
   method colisionSleepy() {
     game.removeVisual(self)
-    sleepyCat.juguete(true)
+    sleepyCat2.juguete(true)
   }
 }
 
@@ -40,12 +40,14 @@ object comida{
   method position() = game.at(2, 6)
   method image() = 'pez.png'
   method colisionSleepy(){
-    sleepyCat.comer(self)
+    sleepyCat2.comer(self)
   }
 }
 
 object maquinaExpendedora {
   var tieneComida = true
+  const esInteractuable = true
+  
   method position() = game.at(0, 7)
   method darComida() {
     if(tieneComida){
@@ -58,7 +60,12 @@ object maquinaExpendedora {
     game.removeTickEvent('delay')
     tieneComida = true
   }
-  method colisionSleepy() {
+  method colisionSleepy(){
+    if(esInteractuable){
+      sleepyCat2.ultimoInteractuable(self)
+    }
+  }
+  method interactuar() {
     self.darComida()
   }
 }
@@ -125,7 +132,7 @@ const muro64 = new MuroDelimitante(position = game.at(13, 1))
 
 class MuroChicas inherits MuroDelimitante{
   override method colisionSleepy() {
-    sleepyCat.choqueConChicas()
+    sleepyCat2.choqueConChicas()
   }
 }
 
@@ -134,7 +141,7 @@ const muroChica2 = new MuroChicas(position = game.at(8, 2))
 
 object cerradura inherits MuroDelimitante(position = game.at(7, 6)){
   override method colisionSleepy(){
-    if(sleepyCat.llave())
+    if(sleepyCat2.llave())
       game.addVisual(puerta)
   }
 }
@@ -142,7 +149,7 @@ object cerradura inherits MuroDelimitante(position = game.at(7, 6)){
 object puerta inherits MuroDelimitante(position = game.at(7,7)){
   method image() = 'puertaAbierta.png'
   override method colisionSleepy() {
-    if(sleepyCat.llave())
+    if(sleepyCat2.llave())
     game.removeTickEvent('patrullar')
     pantalla.siguienteNivel()
   } 

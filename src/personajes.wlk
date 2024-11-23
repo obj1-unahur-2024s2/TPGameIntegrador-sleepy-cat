@@ -5,6 +5,7 @@ import nivel2.*
 
 
 ////////////////////////////////////////// Personaje principal //////////////////////////////////////////
+/*
 object sleepyCat {
   var property energia = 90
   method image() = if(energia > 0) 'sleepyCat' + self.estado() + '.png' else 'sleepyCatDurmiendoA.png' 
@@ -28,14 +29,6 @@ object sleepyCat {
     energia = energia + comida.nutrientes()
     game.removeVisual(comida)
   }
-////////////////////////////////////////// Personaje Nivel 2 //////////////////////////////////////////
-
-// Otra forma de resolver colisiones con muros tal vez? 
-  /*
-  var property position = game.origin() 
-  const posColision = [[4,4], [0,1]]
-  method esUnaPosicionDeColision(unaPosicion) = posColision.contains({posicion => posicion == unaPosicion})
-  */
 
   // Comportamiento con la llave
   var property llave = false
@@ -56,10 +49,17 @@ object sleepyCat {
     game.say(self, 'Los mimos me dan sueño')
   }
 }
+*/
+
 object sleepyCat2 {
   var property energia = 90
-  var position = game.at(2,1)
+  var property ultimoInteractuable = maquinaExpendedora 
+  var position = game.origin()
   method position() = position
+
+  var image = 'sleepyCatA.png' 
+  method image() = image
+
   method position(unaPosicion) {
     if(energia > 0){
       position = unaPosicion
@@ -70,15 +70,45 @@ object sleepyCat2 {
       pantalla.perdiste()
     }
   }
+  //Movimiento
+  var posicionAntX = 0
+  var posicionAntY = 0
 
-  const property balas = [bala1, bala2, bala3, bala4, bala5]
-  method image() = if(energia > 0) 'sleepyCatA.png' else 'sleepyCatDurmiendoA.png'
+  method posicionAntXL() {
+    posicionAntX = position.x() + 1
+  }
+  method posicionAntXR() {
+    posicionAntX = position.x() - 1
+  }
+  method posicionAntYU() {
+    posicionAntY = position.y() - 1
+  }
+  method posicionAntYD() {
+    posicionAntY = position.y() + 1
+  }
+
   method izquierda(){
+   image = 'sleepyCatA.png'
    position = position.left(1)
+   self.posicionAntXL()
   }
   method derecha(){
+   image = 'sleepyCatADerecha.png'
    position = position.right(1)
+   self.posicionAntXR()
   }
+
+  method arriba(){
+   image = 'sleepyCatAUp.png'
+   position = position.up(1)
+   self.posicionAntYU()
+  }
+  method abajo(){
+   image = 'sleepyCatADown.png'
+   position = position.down(1)
+   self.posicionAntYD()
+  }
+
   method tieneEnergia(){
     if(energia < 0){
       game.removeVisual(self)
@@ -87,6 +117,22 @@ object sleepyCat2 {
   method darEnergia(){
     energia = energia + 5
   }
+  //Comida
+  method comer(comida) {
+    energia = energia + comida.nutrientes()
+    game.removeVisual(comida)
+  }
+
+  //Comportamiento nivel 1
+  var property llave = false
+  method obtenerLlave() {
+    llave = true
+    game.say(self, 'Tengo la llave !')
+  }
+  var property juguete = false
+  
+  //Balas y ataque nivel 2
+  const property balas = [bala1, bala2, bala3, bala4, bala5]
   method ataque(){
     energia = energia - 1
     const balaUsada = balas.first()
@@ -95,6 +141,14 @@ object sleepyCat2 {
     game.addVisual(balaUsada)
     balaUsada.activarMovimiento()
     self.tieneEnergia()
+  }
+  //Colisiones
+  method choqueConMuro() {
+    position = game.at(posicionAntX, posicionAntY)
+  }
+  method choqueConChicas() {
+    energia = 0
+    game.say(self, 'Los mimos me dan sueño')
   }
   method colision(tap){}
   method recibirDisparo(bal){}
@@ -105,11 +159,11 @@ object sleepyCat2 {
 object gatoNegro {
   method position() = game.at(8,0) 
   method colisionSleepy() {
-    if(sleepyCat.juguete()){
+    if(sleepyCat2.juguete()){
       game.say(self, "Gracias !! te doy mi llave")
-      sleepyCat.juguete(false)
+      sleepyCat2.juguete(false)
       llave.dar()
-      sleepyCat.obtenerLlave()
+      sleepyCat2.obtenerLlave()
       game.removeVisual(llave)
     }else{
       game.say(self, "Si me traes un juguete te doy mi llave")
@@ -125,7 +179,7 @@ object malaOnda {
   method image() = 'malaOnda1.png'
 
   method colisionSleepy() {
-    sleepyCat.energia(0)
+    sleepyCat2.energia(0)
   }
   method seEnjoja(){
     game.say(self, 'No te subas ahí ! >:(')
