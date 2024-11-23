@@ -11,6 +11,7 @@ class Caja{
     disparosRecibidos += 1
     self.cambiarImagen()
     sleepyCat2.balas().add(bal)
+    
   }
   method image() = image
   method cambiarImagen(){

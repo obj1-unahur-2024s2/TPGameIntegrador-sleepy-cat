@@ -5,13 +5,15 @@ import personajes.*
 
 object pantalla {
   var nivelActual = pantallaDeInicio
+  var property perdio = false
 
   method iniciar() {
     var personajeActivo = false
-
-    game.onCollideDo(sleepyCat, {objeto => objeto.colisionSleepy()})
-
-    keyboard.q().onPressDo{
+    //Teclas del juego
+		keyboard.r().onPressDo{reinicio.reinicioN1(nivelActual)}
+    keyboard.enter().onPressDo({if(self.condicionEnter()) self.siguienteNivel()})
+    //Teclas para testing
+    keyboard.q().onPressDo{ //Para reiniciar la visual de sleepy 1
       if(personajeActivo){
         game.removeVisual(sleepyCat)
         personajeActivo = false
@@ -20,10 +22,19 @@ object pantalla {
         personajeActivo = true
       }
     }
-		keyboard.r().onPressDo{finDelJuego.reinicio()}
-    // Para saltar niveles
-    keyboard.n().onPressDo({self.siguienteNivel()})
-    keyboard.enter().onPressDo({if(self.condicionEnter()) self.siguienteNivel()})
+    keyboard.n().onPressDo({self.siguienteNivel()}) // Para saltar niveles
+
+    // Mecanicas de sleepy 1 y 2
+    game.onCollideDo(sleepyCat, {objeto => objeto.colisionSleepy()})
+    keyboard.right().onPressDo({sleepyCat2.derecha()})
+    keyboard.left().onPressDo({sleepyCat2.izquierda()})
+    keyboard.space().onPressDo({sleepyCat2.ataque()})
+    // Mecanicas de las balas
+    game.onCollideDo(bala1, {p => p.recibirDisparo(bala1)})
+    game.onCollideDo(bala2, {p => p.recibirDisparo(bala2)})
+    game.onCollideDo(bala3, {p => p.recibirDisparo(bala3)})
+    game.onCollideDo(bala4, {p => p.recibirDisparo(bala4)})
+    game.onCollideDo(bala5, {p => p.recibirDisparo(bala5)})
     game.addVisual(nivelActual)
     //nivelActual.musicaDeFondo().shouldLoop(true)
     //nivelActual.musicaDeFondo().play()
@@ -44,7 +55,7 @@ object pantalla {
     nivelActual.descripcion() == 0.5 or
     nivelActual.descripcion() == 1.5 or
     nivelActual.descripcion() == 3
-
+  
   method siguienteNivel(){
     nivelActual.retirarVisuales()
     //nivelActual.seReprodujoElFondo(false)
@@ -54,8 +65,58 @@ object pantalla {
     //nivelActual.musicaDeFondo().play()
     nivelActual.agregarVisuales()
   }
+  method perdiste() {
+    game.addVisual(gameOverScreen)
+  }
+}
+//////////////////////////////////// Configuracion general de niveles ////////////////////////////////////
+
+
+object reinicio {
+  method reinicioN1(nivel) {
+    if(pantalla.perdio() and nivel.descripcion() == 1){
+      game.removeVisual(gameOverScreen)
+      sleepyCat.energia(80)
+      sleepyCat.position(game.origin())
+			if(sleepyCat.llave()){
+        game.addVisual(llave)
+        sleepyCat.llave(false)
+      }
+      if(sleepyCat.juguete()){
+        game.addVisual(juguete)
+        sleepyCat.juguete(false)
+      }
+      pantalla.perdio(false)
+    }else{
+      self.reinicioN2(nivel)
+    }
+  }
+
+  method reinicioN2(nivel) {
+    if(pantalla.perdio() and nivel.descripcion() == 2){
+      game.removeVisual(gameOverScreen)
+      sleepyCat.energia(80)
+      sleepyCat.position(game.at(1, 7))
+      pantalla.perdio(false)
+    }
+  }
 }
 
+object gameOverScreen {
+  method position() = game.origin()
+  method image() = 'gameOver2.png'
+}
+
+object displayDeStats {
+  method position() = game.at(1, 12)
+  method text() = 'Energia= ' + sleepyCat.energia() + ' Pos= ' + sleepyCat.position() + ' Llave= ' + sleepyCat.llave()
+  method textColor() = paleta.rojo()
+}
+object paleta {
+  const property rojo = "FF0000FF"
+}
+
+////////////////////////////////////////////// Niveles ///////////////////////////////////
 object pantallaDeInicio
 {
     method descripcion() = 0
@@ -121,6 +182,7 @@ object nivel1
     game.removeVisual(llave)
     game.removeVisual(cerradura)
     game.removeVisual(puerta)
+    game.removeVisual(displayDeStats)
     game.removeVisual(sleepyCat)
     murosDelimitantes.quitar()
   }
@@ -251,22 +313,16 @@ object nivel2
     game.addVisual(enemigo)
     game.addVisual(caja1)
     game.addVisual(sleepyCat2)
+    game.addVisual(displayDeStats)
     murosDelimitantes2.agregar()
-    keyboard.right().onPressDo({sleepyCat2.derecha()})
-    keyboard.left().onPressDo({sleepyCat2.izquierda()})
-    keyboard.space().onPressDo({sleepyCat2.ataque()})
-    game.onCollideDo(bala1, {p => p.recibirDisparo(bala1)})
-    game.onCollideDo(bala2, {p => p.recibirDisparo(bala2)})
-    game.onCollideDo(bala3, {p => p.recibirDisparo(bala3)})
-    game.onCollideDo(bala4, {p => p.recibirDisparo(bala4)})
-    game.onCollideDo(bala5, {p => p.recibirDisparo(bala5)})
   }
   method retirarVisuales(){
     game.removeVisual(self)
-    game.removeVisual(muro0)
-    game.removeVisual(muro1)
-    game.removeVisual(muro2)
-    game.removeVisual(sleepyCat)
+    game.removeVisual(enemigo)
+    game.removeVisual(caja1)
+    game.removeVisual(sleepyCat2)
+    game.removeVisual(displayDeStats)
+    murosDelimitantes2.quitar()
   }
   method colisionSleepy() {
     
@@ -324,5 +380,24 @@ object murosDelimitantes2 {
     game.addVisual(muro123)
     game.addVisual(muro124)
     game.addVisual(muro125)
-    }
-    }
+  }
+  method quitar() {
+    game.removeVisual(muro110)
+    game.removeVisual(muro111)
+    game.removeVisual(muro112)
+    game.removeVisual(muro113)
+    game.removeVisual(muro114)
+    game.removeVisual(muro115)
+    game.removeVisual(muro116)
+    game.removeVisual(muro117)
+    game.removeVisual(muro118)
+    game.removeVisual(muro119)
+    game.removeVisual(muro120)
+    game.removeVisual(muro121)
+    game.removeVisual(muro122)
+    game.removeVisual(muro123)
+    game.removeVisual(muro124)
+    game.removeVisual(muro125)
+  }
+}
+

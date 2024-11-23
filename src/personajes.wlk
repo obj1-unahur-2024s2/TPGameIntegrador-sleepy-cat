@@ -13,10 +13,10 @@ object sleepyCat {
   var position = game.at(0, 0)
   method position() = position
   method position(unaPosicion) {
-    if(energia == 0){
+    if(energia <= 0){
       position = self.position()
-      finDelJuego.perdio(true)
-      finDelJuego.perdiste()
+      pantalla.perdio(true)
+      pantalla.perdiste()
     }else{
       position = unaPosicion
       energia = 0.max(energia - 1)
@@ -58,7 +58,19 @@ object sleepyCat {
 }
 object sleepyCat2 {
   var energia = 90
-  var property position = game.at(2,1)
+  var position = game.at(2,1)
+  method position() = position
+  method position(unaPosicion) {
+    if(energia > 0){
+      position = unaPosicion
+      energia = 0.max(energia - 1)
+    }else{
+      position = self.position()
+      pantalla.perdio(true)
+      pantalla.perdiste()
+    }
+  }
+
   const property balas = [bala1, bala2, bala3, bala4, bala5]
   method image() = if(energia > 0) 'sleepyCatA.png' else 'sleepyCatDurmiendoA.png'
   method izquierda(){

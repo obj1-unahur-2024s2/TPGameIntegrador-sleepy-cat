@@ -2,31 +2,6 @@ import niveles.*
 import wollok.game.*
 import personajes.*
 
-//////////////////////////////////// Configuracion general del nivel ////////////////////////////////////
-
-object finDelJuego {
-  var property perdio = false
-  method perdiste() {
-    game.addVisual(gameOverScreen)
-  }
-  method reinicio() {
-    if(self.perdio()){
-      game.removeVisual(gameOverScreen)
-      sleepyCat.energia(80)
-      sleepyCat.position(game.origin())
-			if(sleepyCat.llave()>0){
-        game.addVisual(llave)
-        sleepyCat.llave(0)
-      }
-      self.perdio(false)
-    }
-  }
-}
-
-object gameOverScreen {
-  method position() = game.origin()
-  method image() = 'gameOver2.png'
-}
 
 //////////////////////////////////// Objetos del nivel 1 ////////////////////////////////////
 
@@ -102,11 +77,7 @@ object chica2 {
     game.say(self, 'Nos lo quedamos :P')
   }
 }
-object displayDeStats {
-  method position() = game.at(1, 10)
-  method text() = 'Energia= ' + sleepyCat.energia() + ' Pos= ' + sleepyCat.position() + ' Llave= ' + sleepyCat.llave()
 
-}
  /////////////////////////////////////////////// Muros /////////////////////////////////
 
 const muro0 = new MuroDelimitante(position = game.at(2, 1))
