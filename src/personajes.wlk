@@ -57,7 +57,7 @@ object sleepyCat {
   }
 }
 object sleepyCat2 {
-  var energia = 90
+  var property energia = 90
   var position = game.at(2,1)
   method position() = position
   method position(unaPosicion) {
@@ -166,7 +166,7 @@ object abajo {
 //game.onCollideDo(disparo, {objeto => objeto.recibirDisparo()})
 
 object enemigo {
-  var position = game.at(2,12)
+  var property position = game.at(2,12)
   var property vida = 5
   var orientacion = derecha
 

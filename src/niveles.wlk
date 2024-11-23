@@ -10,7 +10,7 @@ object pantalla {
   method iniciar() {
     var personajeActivo = false
     //Teclas del juego
-		keyboard.r().onPressDo{reinicio.reinicioN1(nivelActual)}
+		keyboard.r().onPressDo{nivelActual.reinicio()}
     keyboard.enter().onPressDo({if(self.condicionEnter()) self.siguienteNivel()})
     //Teclas para testing
     keyboard.q().onPressDo{ //Para reiniciar la visual de sleepy 1
@@ -50,11 +50,7 @@ object pantalla {
 		})
     */
   }
-  method condicionEnter() = 
-    nivelActual.descripcion() == 0 or
-    nivelActual.descripcion() == 0.5 or
-    nivelActual.descripcion() == 1.5 or
-    nivelActual.descripcion() == 3
+  method condicionEnter() = nivelActual.descripcion() != 1 and nivelActual.descripcion() != 2
   
   method siguienteNivel(){
     nivelActual.retirarVisuales()
@@ -70,37 +66,6 @@ object pantalla {
   }
 }
 //////////////////////////////////// Configuracion general de niveles ////////////////////////////////////
-
-
-object reinicio {
-  method reinicioN1(nivel) {
-    if(pantalla.perdio() and nivel.descripcion() == 1){
-      game.removeVisual(gameOverScreen)
-      sleepyCat.energia(80)
-      sleepyCat.position(game.origin())
-			if(sleepyCat.llave()){
-        game.addVisual(llave)
-        sleepyCat.llave(false)
-      }
-      if(sleepyCat.juguete()){
-        game.addVisual(juguete)
-        sleepyCat.juguete(false)
-      }
-      pantalla.perdio(false)
-    }else{
-      self.reinicioN2(nivel)
-    }
-  }
-
-  method reinicioN2(nivel) {
-    if(pantalla.perdio() and nivel.descripcion() == 2){
-      game.removeVisual(gameOverScreen)
-      sleepyCat.energia(80)
-      sleepyCat.position(game.at(1, 7))
-      pantalla.perdio(false)
-    }
-  }
-}
 
 object gameOverScreen {
   method position() = game.origin()
@@ -130,6 +95,7 @@ object pantallaDeInicio
     method agregarVisuales(){
       game.addVisual(self)
     }
+    method reinicio() {}
 
     //method musicaDeFondo()=game.sound("menu.mp3")
     //var property seReprodujoElFondo=false
@@ -148,17 +114,32 @@ object instrucciones1
     method agregarVisuales(){
       game.addVisual(self)
     }
-
+    method reinicio() {}
     //method musicaDeFondo()=game.sound("menu.mp3")
     //var property seReprodujoElFondo=false
 }
-object nivel1
-{
+object nivel1 {
   method descripcion() = 1
   method siguiente() = instrucciones2
   method position() = game.origin()
   method image() = "nivel1.png"
   method colisionSleepy(){}
+  method reinicio() {
+    if(pantalla.perdio()){
+      game.removeVisual(gameOverScreen)
+      sleepyCat.energia(80)
+      sleepyCat.position(game.origin())
+			if(sleepyCat.llave()){
+        game.addVisual(llave)
+        sleepyCat.llave(false)
+      }
+      if(sleepyCat.juguete()){
+        game.addVisual(juguete)
+        sleepyCat.juguete(false)
+      }
+      pantalla.perdio(false)
+    } 
+  } 
   method agregarVisuales() {
     game.addVisual(self)
     murosDelimitantes.agregar()
@@ -296,6 +277,7 @@ object instrucciones2
     method agregarVisuales(){
       game.addVisual(self)
     }
+    method reinicio() {}
   
     //method musicaDeFondo()=game.sound("menu.mp3")
     //var property seReprodujoElFondo=false
@@ -307,6 +289,14 @@ object nivel2
   method siguiente() = pantallaFinal
   method position() = game.origin()
   method image() = "nivel2B.png"
+  method reinicio() {
+    if(pantalla.perdio()){
+      sleepyCat.energia(80)
+      sleepyCat.position(game.at(1, 7))
+      pantalla.perdio(false)
+      game.removeVisual(gameOverScreen)
+    }
+  }
 
   method agregarVisuales() {
     game.addVisual(self)
@@ -343,8 +333,19 @@ object pantallaFinal
     }
     method agregarVisuales(){
       game.addVisual(self)
+      self.resetGeneral()
     }
-  
+    method reinicio() {}
+    method resetGeneral() {
+      sleepyCat.llave(false)
+      sleepyCat.juguete(false)
+      sleepyCat.energia(90)
+      sleepyCat2.energia(90)
+      sleepyCat.position().origin()
+      sleepyCat2.position(game.at(7,1))
+      enemigo.position(game.at(2,12))
+      malaOnda.position(game.at(2,2))
+    }
     //method musicaDeFondo()=game.sound("menu.mp3")
     //var property seReprodujoElFondo=false
 }
