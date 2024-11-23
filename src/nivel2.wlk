@@ -8,6 +8,7 @@ class Caja{
   var image = 'caja2.png'
 
   method recibirDisparo(bal){
+    game.removeVisual(bal)
     disparosRecibidos += 1
     self.cambiarImagen()
     sleepyCat2.balas().add(bal)

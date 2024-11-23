@@ -90,7 +90,7 @@ object sleepyCat2 {
   method ataque(){
     energia = energia - 1
     const balaUsada = balas.first()
-    balaUsada.cambiarPosition(self.position())
+    balaUsada.cambiarPosition(self.position().up(1))
     balas.remove(balaUsada)
     game.addVisual(balaUsada)
     balaUsada.activarMovimiento()
@@ -204,6 +204,7 @@ object enemigo {
   method llegoAlBorde() = orientacion.enElBorde(position)
 
   method recibirDisparo(bal) {
+    game.removeVisual(bal)
     vida = vida - 1
     sleepyCat2.balas().add(bal)
     if (vida == 0){
