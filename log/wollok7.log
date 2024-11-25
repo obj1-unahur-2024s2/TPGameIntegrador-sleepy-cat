@@ -1041,3 +1041,6 @@
 {"level":"info","message":"⌛ Building environment","timeElapsed":178,"timestamp":"2024-11-25T00:22:14.047Z"}
 {"level":"info","message":"⌛ Validating src/niveles.wlk","timeElapsed":147,"timestamp":"2024-11-25T00:22:14.195Z"}
 {"level":"info","message":"⌛ Validating src/niveles.wlk","timeElapsed":117,"timestamp":"2024-11-25T00:22:14.317Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":271,"timestamp":"2024-11-25T00:27:47.559Z"}
+{"level":"info","message":"⌛ Validating src/game.wpgm","timeElapsed":169,"timestamp":"2024-11-25T00:27:47.730Z"}
+{"level":"info","message":"⌛ Validating src/musica.wlk","timeElapsed":167,"timestamp":"2024-11-25T00:27:47.992Z"}
