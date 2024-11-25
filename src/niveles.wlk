@@ -12,7 +12,7 @@ object pantalla {
   method iniciar() {
     var personajeActivo = false
     //Teclas del juego
-    game.schedule(1000, {musica.comenzar()})
+    game.schedule(3000, {musica.comenzar()})
     keyboard.p().onPressDo{musica.comenzar()}
 		keyboard.r().onPressDo{nivelActual.reinicio()}
     keyboard.enter().onPressDo({if(self.condicionEnter()) self.siguienteNivel()})
@@ -182,7 +182,7 @@ object nivel1 {
     game.addVisual(llave)
     game.addVisual(cerradura)
     game.addVisual(displayDeStats)
-    game.addVisualCharacter(sleepyCat2)
+    game.addVisual(sleepyCat2)
   }
   method retirarVisuales() {
     game.removeVisual(self)

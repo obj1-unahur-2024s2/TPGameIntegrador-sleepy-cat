@@ -2,7 +2,7 @@ import niveles.*
 import wollok.game.*
 
 object musica {
-	const volumenGeneral = 0.3
+	const volumenGeneral = 0.8
 	var musicaActual = pantalla.nivelActual().musica()
 	method cambiarMusica(musicaDeUnNivel) {
 		musicaActual = musicaDeUnNivel
