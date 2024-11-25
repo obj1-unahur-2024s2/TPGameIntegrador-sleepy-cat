@@ -91,28 +91,32 @@ object sleepyCat2 {
    image = 'sleepyCatA.png'
    position = position.left(1)
    self.posicionAntXL()
+   energia = 0.max(energia - 1)
   }
   method derecha(){
    image = 'sleepyCatADerecha.png'
    position = position.right(1)
    self.posicionAntXR()
+   energia = 0.max(energia - 1)
   }
 
   method arriba(){
    image = 'sleepyCatAUp.png'
    position = position.up(1)
    self.posicionAntYU()
+   energia = 0.max(energia - 1)
   }
   method abajo(){
    image = 'sleepyCatADown.png'
    position = position.down(1)
    self.posicionAntYD()
+   energia = 0.max(energia - 1)
   }
 
   method tieneEnergia(){
     if(energia < 0){
       game.removeVisual(self)
-    }
+    }  
   }
   method darEnergia(){
     energia = energia + 5

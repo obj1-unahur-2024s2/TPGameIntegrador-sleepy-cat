@@ -75,6 +75,7 @@ object chica1 {
   method colisionSleepy() {
     game.say(self, 'Aww! que lindo gato!')
     game.say(chica2, 'Nos lo quedamos :P')
+    sleepyCat2.choqueConChicas()
   }
 }
 object chica2 {
@@ -82,6 +83,7 @@ object chica2 {
     method colisionSleepy() {
     game.say(chica1, 'Aww! que lindo gato!')
     game.say(self, 'Nos lo quedamos :P')
+    sleepyCat2.choqueConChicas()
   }
 }
 
