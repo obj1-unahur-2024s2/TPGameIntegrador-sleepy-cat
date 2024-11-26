@@ -68,12 +68,10 @@ object pantalla {
   method siguienteNivel(){
     musica.terminar()
     nivelActual.retirarVisuales()
-    //nivelActual.seReprodujoElFondo(false)
-    //nivelActual.musicaDeFondo().stop()
+  
     nivelActual = nivelActual.siguiente()
     musica.cambiarMusica(nivelActual.musica())
-    //nivelActual.musicaDeFondo().shouldLoop(true)
-    //nivelActual.musicaDeFondo().play()
+
     musica.comenzar()
     nivelActual.agregarVisuales()
   }
@@ -89,24 +87,27 @@ object gameOverScreen {
 }
 
 object displayDeStats {
-  method position() = game.at(1, 12)
-  method text() = 'Energia= ' + sleepyCat2.energia() + ' Pos= ' + sleepyCat2.position() + ' Llave= ' + sleepyCat2.llave()
+  var property position = game.at(0, 10)
+  method image() = vidaAl100.mostrar() + '.png'
+  // method text() = 'Energia= ' + sleepyCat2.energia() + ' Pos= ' + sleepyCat2.position() + ' Llave= ' + sleepyCat2.llave()
   method textColor() = paleta.rojo()
 }
 object paleta {
   const property rojo = "FF0000FF"
 }
-// object musica {
-//   method iniciar(musicaDelNivel){
-//     const musica = musicaDelNivel
-//     musica.shouldLoop(true)
-//     musica.play()
-//   }
-//   method parar(musicaDelNivel) {
-//     const cancion = musicaDelNivel
-//     cancion.stop()
-//   }
-// }
+object vidaAl100 {
+  method mostrar() = if(sleepyCat2.energiaP() > 75) '100' else vidaAl75.mostrar()
+}
+object vidaAl75 {
+  method mostrar() = if(sleepyCat2.energiaP() > 50) '75' else vidaAl50.mostrar()
+}
+object vidaAl50 {
+  method mostrar() = if(sleepyCat2.energiaP() > 25) '50' else vidaAl25.mostrar()
+}
+object vidaAl25 {
+  method mostrar() = if(sleepyCat2.energiaP() > 10) '25' else '0'
+}
+
 ////////////////////////////////////////////// Niveles ///////////////////////////////////
 object pantallaDeInicio
 {
@@ -328,7 +329,8 @@ object nivel2
   method limiteY() = [1,2]
   method reinicio() {
     if(pantalla.perdio()){
-      sleepyCat2.energia(80)
+      sleepyCat2.energia(90)
+      enemigo.vida(5)
       sleepyCat2.position(game.at(1, 7))
       pantalla.perdio(false)
       game.removeVisual(gameOverScreen)
@@ -341,7 +343,9 @@ object nivel2
     game.addVisual(caja1)
     game.addVisual(sleepyCat2)
     sleepyCat2.position(game.at(7,1))
+    sleepyCat2.energia(90)
     game.addVisual(displayDeStats)
+    displayDeStats.position(game.at(4,13))
     murosDelimitantes2.agregar()
   }
   method retirarVisuales(){

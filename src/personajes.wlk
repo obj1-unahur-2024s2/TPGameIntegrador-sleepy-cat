@@ -52,9 +52,11 @@ object sleepyCat {
 */
 
 object sleepyCat2 {
-  var property energia = 90
-  var property ultimoInteractuable = maquinaExpendedora 
-
+  const energiaInicial = 90
+  var property ultimoInteractuable = maquinaExpendedora
+    
+  var property energia = energiaInicial
+  method energiaP() = (energia * 100)/energiaInicial
   var image = 'sleepyCatA.png' 
   method image() = image
 
