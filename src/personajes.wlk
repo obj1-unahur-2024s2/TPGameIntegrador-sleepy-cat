@@ -139,7 +139,10 @@ object sleepyCat2 {
   var property llave = false
   method obtenerLlave() {
     llave = true
-    game.say(self, 'Tengo la llave !')
+    //self.cambiarInteractuable(llave)
+    //dialogoLlave.mostrarDialogo()
+    
+    //game.say(self, 'Tengo la llave !')
   }
 
   var property juguete = false
@@ -160,10 +163,40 @@ object sleepyCat2 {
   }
   method choqueConChicas() {
     energia = 0
-    game.say(self, 'Los mimos me dan sueño')
+    image = 'sleepyCatDurmiendoA.png'
+    game.schedule(1500, {dialogoConChicas.mostrarDialogo()})
+    //game.say(self, 'Los mimos me dan sueño')
   }
   method colision(tap){}
   method recibirDisparo(bal){}
+
+  method cambiarInteractuable(interactuable) {
+    ultimoInteractuable = interactuable
+  }
+}
+
+object dialogoConChicas {
+  const property position = game.origin()
+  method image()  = 'sleepyCatDialogo2.png'
+  
+  method mostrarDialogo() {
+    game.addVisual(self)
+  }
+
+}
+
+object dialogoLlave {
+  const property position = game.origin()
+  method image() = 'sleepyCatDialogo1.png'
+
+  method mostrarDialogo() {
+    game.addVisual(self)
+  }
+
+  method sacarDialogo() {
+    game.removeVisual(self)
+  }
+
 }
 
 ////////////////////////////////////////// Personajes secundarios //////////////////////////////////////////
@@ -171,17 +204,33 @@ object sleepyCat2 {
 object gatoNegro {
   method position() = game.at(8,0) 
   method colisionSleepy() {
+    sleepyCat2.cambiarInteractuable(self)
     if(sleepyCat2.juguete()){
-      game.say(self, "Gracias !! te doy mi llave")
+      //game.say(self, "Gracias !! te doy mi llave")
+      gatoDialogos.mostrarDialogo2()
       sleepyCat2.juguete(false)
       llave.dar()
       sleepyCat2.obtenerLlave()
       game.removeVisual(llave)
     }else{
-      game.say(self, "Si me traes un juguete te doy mi llave")
+  /*    gatoDialogos.mostrarDialogo()
+      game.schedule(3000, {gatoDialogos.sacarDialogo()})
+      //game.schedule(3000, {game.removeVisual(dialogo)})
+      //game.say(self, "Si me traes un juguete te doy mi llave")
       game.addVisual(juguete)
       malaOnda.cuidarJuguete()
+    }*/}
+  }
+
+  method interactuar(){
+    if(game.hasVisual(gatoDialogos)){
+      gatoDialogos.sacarDialogo()
     }
+    else {
+      gatoDialogos.mostrarDialogo()
+      game.addVisual(juguete)
+      malaOnda.cuidarJuguete()
+      }
   }
 }
 

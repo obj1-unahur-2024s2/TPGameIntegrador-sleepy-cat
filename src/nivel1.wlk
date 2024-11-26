@@ -11,14 +11,41 @@ object llave {
   method dar() {
     if(sleepyCat2.llave()){
       game.removeVisual(self)
-      sleepyCat2.obtenerLlave()      
+      sleepyCat2.obtenerLlave()
     }
   }
   method colisionSleepy() {
     
   }
+  method interactuar(){
+    if(game.hasVisual(dialogoLlave)){
+      dialogoLlave.sacarDialogo()
+    }
+  }
 
 }
+
+object gatoDialogos {
+  const property position = game.origin()
+  var image = 'gatoDialogo1.png' 
+
+  method image() = image
+  method mostrarDialogo() {
+    game.addVisual(self)
+  }
+
+  method sacarDialogo() {
+    game.removeVisual(self)
+  }
+
+  method mostrarDialogo2() {
+    image = 'gatoDialogo2.png'
+    game.addVisual(self)
+  }
+
+}
+
+
 object juguete {
   const property position = game.at(2, 2) 
   method image() = 'ovillo.png'
@@ -61,7 +88,8 @@ object maquinaExpendedora {
   }
 
   method colisionSleepy(){
-      sleepyCat2.ultimoInteractuable(self)
+      sleepyCat2.cambiarInteractuable(self)
+
       if(tieneComida){
         game.say(self, "Tengo comida !")
       }else{
