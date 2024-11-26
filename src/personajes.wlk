@@ -54,13 +54,19 @@ object sleepyCat {
 object sleepyCat2 {
   var property energia = 90
   var property ultimoInteractuable = maquinaExpendedora 
-  var position = game.origin()
-  method position() = position
 
   var image = 'sleepyCatA.png' 
   method image() = image
 
+  //Movimiento
+  var position = game.origin()
+  method position() = position 
   method position(unaPosicion) {
+    if(self.xEsValida(unaPosicion.x()) and self.yEsValida(unaPosicion.y())){
+      self.avanzar(unaPosicion)
+    }
+  }
+  method avanzar(unaPosicion) {
     if(energia > 0){
       position = unaPosicion
       energia = 0.max(energia - 1)
@@ -70,7 +76,18 @@ object sleepyCat2 {
       pantalla.perdiste()
     }
   }
-  //Movimiento
+
+  method xEsValida(unaPosicion){
+    const maximo = pantalla.nivelActual().limiteX().last()
+    const minimo = pantalla.nivelActual().limiteX().first()
+    return unaPosicion.between(minimo, maximo)
+  }
+  method yEsValida(unaPosicion){
+    const maximo = pantalla.nivelActual().limiteY().last()
+    const minimo = pantalla.nivelActual().limiteY().first()
+    return unaPosicion.between(minimo, maximo)
+  }
+
   var posicionAntX = 0
   var posicionAntY = 0
 
@@ -88,36 +105,27 @@ object sleepyCat2 {
   }
 
   method izquierda(){
-   image = 'sleepyCatA.png'
-   position = position.left(1)
-   self.posicionAntXL()
-   energia = 0.max(energia - 1)
+    self.position(position.left(1))
+    self.posicionAntXL()
+    image = 'sleepyCatA.png'
   }
   method derecha(){
-   image = 'sleepyCatADerecha.png'
-   position = position.right(1)
-   self.posicionAntXR()
-   energia = 0.max(energia - 1)
+    self.position(position.right(1))
+    self.posicionAntXR()
+    image = 'sleepyCatADerecha.png'    
   }
 
   method arriba(){
-   image = 'sleepyCatAUp.png'
-   position = position.up(1)
+   self.position(position.up(1))
    self.posicionAntYU()
-   energia = 0.max(energia - 1)
+   image = 'sleepyCatAUp.png'
   }
   method abajo(){
-   image = 'sleepyCatADown.png'
-   position = position.down(1)
+   self.position(position.down(1))
    self.posicionAntYD()
-   energia = 0.max(energia - 1)
+   image = 'sleepyCatADown.png'
   }
 
-  method tieneEnergia(){
-    if(energia < 0){
-      game.removeVisual(self)
-    }  
-  }
   method darEnergia(){
     energia = energia + 5
   }
@@ -133,6 +141,7 @@ object sleepyCat2 {
     llave = true
     game.say(self, 'Tengo la llave !')
   }
+
   var property juguete = false
   
   //Balas y ataque nivel 2
@@ -144,7 +153,6 @@ object sleepyCat2 {
     balas.remove(balaUsada)
     game.addVisual(balaUsada)
     balaUsada.activarMovimiento()
-    self.tieneEnergia()
   }
   //Colisiones
   method choqueConMuro() {

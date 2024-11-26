@@ -153,6 +153,8 @@ object nivel1 {
   method siguiente() = instrucciones2
   method position() = game.origin()
   method image() = "nivel1.png"
+  method limiteX() = [0,15]
+  method limiteY() = [0,7]
 
   method colisionSleepy(){}
   method reinicio() {
@@ -322,6 +324,8 @@ object nivel2
   method siguiente() = pantallaFinal
   method position() = game.origin()
   method image() = "nivel2B.png"
+  method limiteX() = [2,13]
+  method limiteY() = [1,2]
   method reinicio() {
     if(pantalla.perdio()){
       sleepyCat2.energia(80)

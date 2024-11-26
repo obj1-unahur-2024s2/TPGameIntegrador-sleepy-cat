@@ -46,9 +46,8 @@ object comida{
 
 object maquinaExpendedora {
   var tieneComida = true
-  const esInteractuable = true
   
-  method position() = game.at(0, 7)
+  method position() = game.at(0, 6)
   method darComida() {
     if(tieneComida){
       game.addVisual(comida)
@@ -60,10 +59,14 @@ object maquinaExpendedora {
     game.removeTickEvent('delay')
     tieneComida = true
   }
+
   method colisionSleepy(){
-    if(esInteractuable){
       sleepyCat2.ultimoInteractuable(self)
-    }
+      if(tieneComida){
+        game.say(self, "Tengo comida !")
+      }else{
+        game.say(self, "Vuelve mas tarde")
+      }
   }
   method interactuar() {
     self.darComida()
