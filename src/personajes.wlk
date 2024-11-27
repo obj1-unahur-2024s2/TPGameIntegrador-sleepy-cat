@@ -152,12 +152,18 @@ object sleepyCat2 {
   //Balas y ataque nivel 2
   const property balas = [bala1, bala2, bala3, bala4, bala5]
   method ataque(){
+    if(energia > 0){
     energia = energia - 1
     const balaUsada = balas.first()
     balaUsada.cambiarPosition(self.position().up(1))
     balas.remove(balaUsada)
     game.addVisual(balaUsada)
-    balaUsada.activarMovimiento()
+    balaUsada.activarMovimiento()}
+    else {
+      position = self.position()
+      pantalla.perdio(true)
+      pantalla.perdiste()
+    }
   }
   //Colisiones
   method choqueConMuro() {
@@ -166,8 +172,8 @@ object sleepyCat2 {
   method choqueConChicas() {
     energia = 0
     image = 'sleepyCatDurmiendoA.png'
-    game.schedule(1500, {dialogoConChicas.mostrarDialogo()})
-    //game.say(self, 'Los mimos me dan sueño')
+    game.schedule(500, {dialogoConChicas.mostrarDialogo()})
+    game.schedule(2500, {dialogoConChicas.sacarDialogo()})
   }
   method colision(tap){}
   method recibirDisparo(bal){}
@@ -175,6 +181,7 @@ object sleepyCat2 {
   method cambiarInteractuable(interactuable) {
     ultimoInteractuable = interactuable
   }
+  
 }
 
 object dialogoConChicas {
@@ -185,6 +192,9 @@ object dialogoConChicas {
     game.addVisual(self)
   }
 
+  method sacarDialogo() {
+    game.removeVisual(self)
+  }
 }
 
 object dialogoLlave {
@@ -208,20 +218,12 @@ object gatoNegro {
   method colisionSleepy() {
     sleepyCat2.cambiarInteractuable(self)
     if(sleepyCat2.juguete()){
-      //game.say(self, "Gracias !! te doy mi llave")
       gatoDialogos.mostrarDialogo2()
       sleepyCat2.juguete(false)
       llave.dar()
       sleepyCat2.obtenerLlave()
       game.removeVisual(llave)
-    }else{
-  /*    gatoDialogos.mostrarDialogo()
-      game.schedule(3000, {gatoDialogos.sacarDialogo()})
-      //game.schedule(3000, {game.removeVisual(dialogo)})
-      //game.say(self, "Si me traes un juguete te doy mi llave")
-      game.addVisual(juguete)
-      malaOnda.cuidarJuguete()
-    }*/}
+    }
   }
 
   method interactuar(){
@@ -229,8 +231,8 @@ object gatoNegro {
       gatoDialogos.sacarDialogo()
     }
     else {
-      gatoDialogos.mostrarDialogo()
       game.addVisual(juguete)
+      gatoDialogos.mostrarDialogo()
       malaOnda.cuidarJuguete()
       }
   }
