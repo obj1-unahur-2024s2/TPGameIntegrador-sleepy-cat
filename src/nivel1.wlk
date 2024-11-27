@@ -42,7 +42,9 @@ object gatoDialogos {
     image = 'gatoDialogo2.png'
     game.addVisual(self)
   }
-
+  method colisionSleepy(){
+    //completar
+  }
 }
 
 

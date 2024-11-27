@@ -987,3 +987,11 @@
 {"level":"info","message":"onRequest - completionItem/resolve","timestamp":"2024-11-23T21:26:22.138Z"}
 {"level":"info","message":"⌛ Building environment","timeElapsed":110,"timestamp":"2024-11-23T21:26:22.248Z"}
 {"level":"info","message":"onRequest - completionItem/resolve","timestamp":"2024-11-23T21:26:22.249Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":174,"timestamp":"2024-11-27T14:26:11.324Z"}
+{"level":"info","message":"onRequest - WORKSPACE_URI:file:///home/objetos-1-noche/workspace/sleepy/TPGameIntegrador-sleepy-cat","timestamp":"2024-11-27T14:26:11.334Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":111,"timestamp":"2024-11-27T14:26:11.448Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":147,"timestamp":"2024-11-27T14:26:11.597Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":128,"timestamp":"2024-11-27T14:26:11.810Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":207,"timestamp":"2024-11-27T14:26:12.017Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":188,"timestamp":"2024-11-27T14:26:12.301Z"}
+{"level":"info","message":"⌛ Validating src/game.wpgm","timeElapsed":138,"timestamp":"2024-11-27T14:26:12.443Z"}

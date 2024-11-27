@@ -342,6 +342,7 @@ object enemigo {
     game.removeVisual(bal)
     vida = vida - 1
     sleepyCat2.balas().add(bal)
+    bal.quitarMovimiento()
     if (vida == 0){
       self.morir()
     }

@@ -406,6 +406,7 @@ class MuroDelimitante{
   method recibirDisparo(bal) {
     sleepyCat2.balas().add(bal)
     game.removeVisual(bal)
+    bal.quitarMovimiento()
   }
   // Para pruebas:
   // method image() = 'test-edit.png' 

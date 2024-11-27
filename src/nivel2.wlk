@@ -13,7 +13,7 @@ class Caja{
     disparosRecibidos += 1
     self.cambiarImagen()
     sleepyCat2.balas().add(bal)
-    
+    bal.quitarMovimiento()
   }
   method image() = image
   method cambiarImagen(){
@@ -32,85 +32,32 @@ const caja2 = new Caja(position = game.at(8, 8))
 const caja3 = new Caja(position = game.at(5, 4))
 const caja4 = new Caja(position = game.at(10, 4))
 
+const bala1 = new Bala(nombreTick="Mov1")
+const bala2 = new Bala(nombreTick="Mov2")
+const bala3 = new Bala(nombreTick="Mov3")
+const bala4 = new Bala(nombreTick="Mov4")
+const bala5 = new Bala(nombreTick="Mov5")
+
+
+class Bala{
+  var property position = sleepyCat2.position()
+  const property nombreTick
+  method image() = "sleepyCatAtaque32x32.png"
+  method moverAdelante(){
+    position = position.up(1)
+  }
+  method cambiarPosition(pos){
+    position = pos
+  }
+  method activarMovimiento(){
+    game.onTick(100, nombreTick, {self.moverAdelante()})
+  }
+  method recibirDisparo(unaBala){}
+  method quitarMovimiento(){
+    game.removeTickEvent(nombreTick)
+  }
+}
 //BALAS
-object bala1 {
-  var property position = sleepyCat2.position()
-  const property nombreTick = "Mov1"
-  method image() = "sleepyCatAtaque32x32.png"
-  method moverAdelante(){
-    position = position.up(1)
-  }
-  method cambiarPosition(pos){
-    position = pos
-  }
-  method activarMovimiento(){
-    game.onTick(100, nombreTick, {self.moverAdelante()})
-  }
-  method recibirDisparo(unaBala){}
-}
-object bala2 {
-  var property position = sleepyCat2.position()
-  const property nombreTick = "Mov2"
-  method image() = "sleepyCatAtaque32x32.png"
-  method moverAdelante(){
-    position = position.up(1)
-  }
-  method cambiarPosition(pos){
-    position = pos
-  }
-  method activarMovimiento(){
-    game.onTick(100, nombreTick, {self.moverAdelante()})
-  }
-  method recibirDisparo(unaBala){}
-}
-
-object bala3 {
-  var property position = sleepyCat2.position()
-  const property nombreTick = "Mov3"
-  method image() = "sleepyCatAtaque32x32.png"
-  method moverAdelante(){
-    position = position.up(1)
-  }
-  method cambiarPosition(pos){
-    position = pos
-  }
-  method activarMovimiento(){
-    game.onTick(100, nombreTick, {self.moverAdelante()})
-  }
-  method recibirDisparo(unaBala){}
-}
-
-object bala4 {
-  var property position = sleepyCat2.position()
-  const property nombreTick = "Mov4"
-  method image() = "sleepyCatAtaque32x32.png"
-  method moverAdelante(){
-    position = position.up(1)
-  }
-  method cambiarPosition(pos){
-    position = pos
-  }
-  method activarMovimiento(){
-    game.onTick(100, nombreTick, {self.moverAdelante()})
-  }
-  method recibirDisparo(unaBala){}
-}
-
-object bala5 {
-  var property position = sleepyCat2.position()
-  const property nombreTick = "Mov5"
-  method image() = "sleepyCatAtaque32x32.png"
-  method moverAdelante(){
-    position = position.up(1)
-  }
-  method cambiarPosition(pos){
-    position = pos
-  }
-  method activarMovimiento(){
-    game.onTick(100, nombreTick, {self.moverAdelante()})
-  }
-  method recibirDisparo(unaBala){}
-}
 
 const muro110 = new MuroDelimitante(position = game.at(0, 14))
 const muro111 = new MuroDelimitante(position = game.at(1, 14))
