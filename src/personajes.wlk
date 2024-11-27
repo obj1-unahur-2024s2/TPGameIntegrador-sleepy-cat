@@ -73,6 +73,7 @@ object sleepyCat2 {
       position = unaPosicion
       energia = 0.max(energia - 1)
     }else{
+      image = 'sleepyCatDurmiendoA.png'
       position = self.position()
       pantalla.perdio(true)
       pantalla.perdiste()

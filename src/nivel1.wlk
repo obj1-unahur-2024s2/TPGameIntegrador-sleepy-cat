@@ -9,7 +9,7 @@ object llave {
   method position() = game.at(8, 0)
   method image() = 'key.png'
   method dar() {
-    if(sleepyCat2.llave()){
+    if(not sleepyCat2.llave()){
       game.removeVisual(self)
       sleepyCat2.obtenerLlave()
     }
@@ -67,6 +67,9 @@ object comida{
   method position() = game.at(2, 6)
   method image() = 'pez.png'
   method colisionSleepy(){
+    sleepyCat2.ultimoInteractuable(self)
+  }
+  method interactuar(){
     sleepyCat2.comer(self)
   }
 }
@@ -88,7 +91,7 @@ object maquinaExpendedora {
   }
 
   method colisionSleepy(){
-      sleepyCat2.cambiarInteractuable(self)
+      sleepyCat2.ultimoInteractuable(self)
 
       if(tieneComida){
         game.say(self, "Tengo comida !")

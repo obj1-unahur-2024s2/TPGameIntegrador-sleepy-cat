@@ -5,6 +5,7 @@ import personajes.*
 class Caja{
   const property position
   var disparosRecibidos = 0
+  method nutrientes() = 10
   var image = 'caja2.png'
 
   method recibirDisparo(bal){
@@ -19,8 +20,9 @@ class Caja{
     if( disparosRecibidos == 1 ){ 
       image = 'cajaRota2.png' 
     }else { 
-      game.removeVisual(self)
-      // sleepyCat.darEnergia()
+      image = 'sumaEnergia2.png'
+      game.schedule(1000, {image = 'sumaEnergia.png'})
+      game.schedule(2000, {sleepyCat2.comer(self)})
      } 
   }
 }
