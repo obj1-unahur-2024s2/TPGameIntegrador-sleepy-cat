@@ -117,12 +117,20 @@ object sleepyCat2 {
   method izquierda(){
     self.position(position.left(1))
     self.posicionAntXL()
-    image = 'sleepyCatA.png'
+    if(juguete){
+      image = 'sleepyCatOvilloIzquierda.png'
+    }else{
+      image = 'sleepyCatA.png'
+    }
   }
   method derecha(){
     self.position(position.right(1))
     self.posicionAntXR()
-    image = 'sleepyCatADerecha.png'    
+    if(juguete){
+      image = 'sleepyCatOvilloDerecha.png'
+    }else{
+      image = 'sleepyCatADerecha.png'
+    }   
   }
 
   method arriba(){
