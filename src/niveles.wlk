@@ -77,6 +77,7 @@ object pantalla {
   }
   method perdiste() {
     game.addVisual(gameOverScreen)
+    efectos.perdiste()
   }
 }
 //////////////////////////////////// Configuracion general de niveles ////////////////////////////////////
@@ -88,23 +89,23 @@ object gameOverScreen {
 
 object displayDeStats {
   var property position = game.at(0, 10)
-  method image() = vidaAl100.mostrar() + '.png'
+  method image() = energiaAl100.mostrar() + '.png'
   // method text() = 'Energia= ' + sleepyCat2.energia() + ' Pos= ' + sleepyCat2.position() + ' Llave= ' + sleepyCat2.llave()
   method textColor() = paleta.rojo()
 }
 object paleta {
   const property rojo = "FF0000FF"
 }
-object vidaAl100 {
-  method mostrar() = if(sleepyCat2.energiaP() > 75) '100' else vidaAl75.mostrar()
+object energiaAl100 {
+  method mostrar() = if(sleepyCat2.energiaP() > 75) '100' else energiaAl75.mostrar()
 }
-object vidaAl75 {
-  method mostrar() = if(sleepyCat2.energiaP() > 50) '75' else vidaAl50.mostrar()
+object energiaAl75 {
+  method mostrar() = if(sleepyCat2.energiaP() > 50) '75' else energiaAl50.mostrar()
 }
-object vidaAl50 {
-  method mostrar() = if(sleepyCat2.energiaP() > 25) '50' else vidaAl25.mostrar()
+object energiaAl50 {
+  method mostrar() = if(sleepyCat2.energiaP() > 25) '50' else energiaAl25.mostrar()
 }
-object vidaAl25 {
+object energiaAl25 {
   method mostrar() = if(sleepyCat2.energiaP() > 10) '25' else '0'
 }
 
@@ -341,6 +342,9 @@ object nivel2
     game.addVisual(self)
     game.addVisual(enemigo)
     game.addVisual(caja1)
+    game.addVisual(caja2)
+    game.addVisual(caja3)
+    game.addVisual(caja4)
     game.addVisual(sleepyCat2)
     sleepyCat2.position(game.at(7,1))
     sleepyCat2.energia(90)
@@ -352,6 +356,9 @@ object nivel2
     game.removeVisual(self)
     game.removeVisual(enemigo)
     game.removeVisual(caja1)
+    game.removeVisual(caja2)
+    game.removeVisual(caja3)
+    game.removeVisual(caja4)
     game.removeVisual(sleepyCat2)
     game.removeVisual(displayDeStats)
     murosDelimitantes2.quitar()

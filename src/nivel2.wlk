@@ -27,7 +27,10 @@ class Caja{
   }
 }
 
-const caja1 = new Caja(position = game.at(6, 7))
+const caja1 = new Caja(position = game.at(3, 8))
+const caja2 = new Caja(position = game.at(8, 8))
+const caja3 = new Caja(position = game.at(5, 4))
+const caja4 = new Caja(position = game.at(10, 4))
 
 //BALAS
 object bala1 {

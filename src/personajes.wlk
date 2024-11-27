@@ -1,3 +1,4 @@
+import musica.*
 import niveles.*
 import wollok.game.*
 import nivel1.*
@@ -72,6 +73,7 @@ object sleepyCat2 {
     if(energia > 0){
       position = unaPosicion
       energia = 0.max(energia - 1)
+      self.cansado()
     }else{
       image = 'sleepyCatDurmiendoA.png'
       position = self.position()
@@ -79,7 +81,12 @@ object sleepyCat2 {
       pantalla.perdiste()
     }
   }
-
+  method cansado() {
+    if(self.energia() == 25){
+      efectos.cansado()
+      game.say(self, "Estoy cansado :(")
+    }
+  } 
   method xEsValida(unaPosicion){
     const maximo = pantalla.nivelActual().limiteX().last()
     const minimo = pantalla.nivelActual().limiteX().first()

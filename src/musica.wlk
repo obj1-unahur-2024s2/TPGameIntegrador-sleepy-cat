@@ -16,3 +16,11 @@ object musica {
 		musicaActual.stop()
 	}
 }
+object efectos {
+	method perdiste() {
+		game.sound('perdiste.mp3').play()
+	}
+	method cansado() {
+		game.sound('cansado.mp3').play()
+	}
+}
