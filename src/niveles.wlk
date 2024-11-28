@@ -61,7 +61,7 @@ object pantalla {
 
   // Validaciones 
   method condicionEnter() = nivelActual.descripcion() != 1 and nivelActual.descripcion() != 2
-  method condicionAtaque() = nivelActual.descripcion() == 2
+  method condicionAtaque() = nivelActual.descripcion() == 2 and sleepyCat2.balas().size()>=1
   method condicionInteraccion(unObjeto) =  sleepyCat2.position() == unObjeto.position()
 
   // Pasar a siguiente nivel
@@ -84,7 +84,7 @@ object pantalla {
 
 object gameOverScreen {
   method position() = game.origin()
-  method image() = 'gameOver2.png'
+  method image() = 'gameOver1.png'
 }
 
 object displayDeStats {
@@ -92,6 +92,7 @@ object displayDeStats {
   method image() = energiaAl100.mostrar() + '.png'
   // method text() = 'Energia= ' + sleepyCat2.energia() + ' Pos= ' + sleepyCat2.position() + ' Llave= ' + sleepyCat2.llave()
   method textColor() = paleta.rojo()
+  method recibirDisparo(patata){}
 }
 object paleta {
   const property rojo = "FF0000FF"
@@ -176,31 +177,40 @@ object nivel1 {
     } 
   } 
   method agregarVisuales() {
-    game.addVisual(self)
+    //game.addVisual(self)
     murosDelimitantes.agregar()
-    game.addVisual(gatoNegro)
-    game.addVisual(malaOnda)
-    game.addVisual(maquinaExpendedora)
-    game.addVisual(chica1)
-    game.addVisual(chica2)
-    game.addVisual(llave)
-    game.addVisual(cerradura)
-    game.addVisual(displayDeStats)
-    game.addVisual(sleepyCat2)
+    //game.addVisual(gatoNegro)
+    //game.addVisual(malaOnda)
+    //game.addVisual(maquinaExpendedora)
+    //game.addVisual(chica1)
+    //game.addVisual(chica2)
+    //game.addVisual(llave)
+    //game.addVisual(cerradura)
+    //game.addVisual(displayDeStats)
+    //game.addVisual(sleepyCat2)
+    self.agregarGrupoDeVisuales([self,gatoNegro,malaOnda,maquinaExpendedora,chica1,chica2,llave,cerradura,displayDeStats,sleepyCat2])
+  }
+  method agregarGrupoDeVisuales(unGrupoDeVisuales){
+    unGrupoDeVisuales.forEach({ visual => game.addVisual(visual) })
   }
   method retirarVisuales() {
-    game.removeVisual(self)
-    game.removeVisual(gatoNegro)
-    game.removeVisual(malaOnda)
-    game.removeVisual(maquinaExpendedora)
-    game.removeVisual(chica1)
-    game.removeVisual(chica2)
-    game.removeVisual(llave)
-    game.removeVisual(cerradura)
-    game.removeVisual(puerta)
-    game.removeVisual(displayDeStats)
-    game.removeVisual(sleepyCat2)
+    //game.removeVisual(self)
+    //game.removeVisual(gatoNegro)
+    //game.removeVisual(malaOnda)
+    //game.removeVisual(maquinaExpendedora)
+    //game.removeVisual(chica1)
+    //game.removeVisual(chica2)
+    //game.removeVisual(llave)
+    //game.removeVisual(cerradura)
+    //game.removeVisual(puerta)
+    //game.removeVisual(displayDeStats)
+    //game.removeVisual(sleepyCat2)
+    self.retirarGrupoDeVisuales([self,gatoNegro,malaOnda,maquinaExpendedora,chica1,chica2,llave,cerradura,displayDeStats,sleepyCat2])
     murosDelimitantes.quitar()
+  }
+  method retirarGrupoDeVisuales(unGrupoDeVisuales)
+  {
+    unGrupoDeVisuales.forEach({ visuales => game.removeVisual(visuales) })
   }
   //method musicaDeFondo()=game.sound("battle.mp3")
   //var property seReprodujoElFondo=false
@@ -208,94 +218,118 @@ object nivel1 {
 
 object murosDelimitantes {
   method agregar() {
-    game.addVisual(muro0)
-    game.addVisual(muro1)
-    game.addVisual(muro2)
-    game.addVisual(muro3)
-    game.addVisual(muro4)
-    game.addVisual(muro5)
+    //game.addVisual(muro0)
+    //game.addVisual(muro1)
+    //game.addVisual(muro2)
+    //game.addVisual(muro3)
+    //game.addVisual(muro4)
+    //game.addVisual(muro5)
 
-    game.addVisual(muro20)
-    game.addVisual(muro21)
-    game.addVisual(muro22)
-    game.addVisual(muro23)
-    game.addVisual(muro24)
-    game.addVisual(muro25)
+    //game.addVisual(muro20)
+    //game.addVisual(muro21)
+    //game.addVisual(muro22)
+    //game.addVisual(muro23)
+    //game.addVisual(muro24)
+    //game.addVisual(muro25)
 
-    game.addVisual(muro30)
-    game.addVisual(muro31)
-    game.addVisual(muro32)
-    game.addVisual(muro33)
-    game.addVisual(muro34)
-    game.addVisual(muro35)
+    //game.addVisual(muro30)
+    //game.addVisual(muro31)
+    //game.addVisual(muro32)
+    //game.addVisual(muro33)
+    //game.addVisual(muro34)
+    //game.addVisual(muro35)
 
-    game.addVisual(muro40)
-    game.addVisual(muro41)
-    game.addVisual(muro42)
-    game.addVisual(muro43)
-    game.addVisual(muro44)  
-    game.addVisual(muro45)  
+    //game.addVisual(muro40)
+    //game.addVisual(muro41)
+    //game.addVisual(muro42)
+    //game.addVisual(muro43)
+    //game.addVisual(muro44)  
+    //game.addVisual(muro45)  
   
-    game.addVisual(muro50)
-    game.addVisual(muro51)
-    game.addVisual(muro52)
-    game.addVisual(muro53)
-    game.addVisual(muro54)  
-    game.addVisual(muro55)  
+    //game.addVisual(muro50)
+    //game.addVisual(muro51)
+    //game.addVisual(muro52)
+    //game.addVisual(muro53)
+    //game.addVisual(muro54)  
+    //game.addVisual(muro55)  
   
-    game.addVisual(muro60)
-    game.addVisual(muro61)
-    game.addVisual(muro62)
-    game.addVisual(muro63)
-    game.addVisual(muro64)  
+    //game.addVisual(muro60)
+    //game.addVisual(muro61)
+    //game.addVisual(muro62)
+    //game.addVisual(muro63)
+    //game.addVisual(muro64)  
 
-    game.addVisual(muroChica1)
-    game.addVisual(muroChica2)
+    //game.addVisual(muroChica1)
+    //game.addVisual(muroChica2)
+    self.agregarGrupoDeVisuales([muro0,muro1,muro2,muro3,muro4,muro5,
+    muro20,muro21,muro22,muro24,muro25,
+    muro30,muro31,muro32,muro33,muro34,muro35,
+    muro40,muro41,muro42,muro43,muro44,muro45,
+    muro50,muro51,muro52,muro53,muro54,muro55,
+    muro60,muro61,muro62,muro63,muro64,
+    muroChica1, muroChica2
+    ])
   }
   method quitar() {
-    game.removeVisual(muro0)
-    game.removeVisual(muro1)
-    game.removeVisual(muro2)
-    game.removeVisual(muro3)
-    game.removeVisual(muro4)
-    game.removeVisual(muro5)
+    //game.removeVisual(muro0)
+    //game.removeVisual(muro1)
+    //game.removeVisual(muro2)
+    //game.removeVisual(muro3)
+    //game.removeVisual(muro4)
+    //game.removeVisual(muro5)
 
-    game.removeVisual(muro20)
-    game.removeVisual(muro21)
-    game.removeVisual(muro22)
-    game.removeVisual(muro23)
-    game.removeVisual(muro24)
-    game.removeVisual(muro25)
+    //game.removeVisual(muro20)
+    //game.removeVisual(muro21)
+    //game.removeVisual(muro22)
+    //game.removeVisual(muro23)
+    //game.removeVisual(muro24)
+    //game.removeVisual(muro25)
 
-    game.removeVisual(muro30)
-    game.removeVisual(muro31)
-    game.removeVisual(muro32)
-    game.removeVisual(muro33)
-    game.removeVisual(muro34)
-    game.removeVisual(muro35)
+    //game.removeVisual(muro30)
+    //game.removeVisual(muro31)
+    //game.removeVisual(muro32)
+    //game.removeVisual(muro33)
+    //game.removeVisual(muro34)
+    //game.removeVisual(muro35)
 
-    game.removeVisual(muro40)
-    game.removeVisual(muro41)
-    game.removeVisual(muro42)
-    game.removeVisual(muro43)
-    game.removeVisual(muro44)  
-    game.removeVisual(muro45)  
+    //game.removeVisual(muro40)
+    //game.removeVisual(muro41)
+    //game.removeVisual(muro42)
+    //game.removeVisual(muro43)
+    //game.removeVisual(muro44)  
+    //game.removeVisual(muro45)  
   
-    game.removeVisual(muro50)
-    game.removeVisual(muro51)
-    game.removeVisual(muro52)
-    game.removeVisual(muro53)
-    game.removeVisual(muro54)  
-    game.removeVisual(muro55)  
+    //game.removeVisual(muro50)
+    //game.removeVisual(muro51)
+    //game.removeVisual(muro52)
+    //game.removeVisual(muro53)
+    //game.removeVisual(muro54)  
+    //game.removeVisual(muro55)  
   
-    game.removeVisual(muro60)
-    game.removeVisual(muro61)
-    game.removeVisual(muro62)
-    game.removeVisual(muro63)
-    game.removeVisual(muro64)  
+    //game.removeVisual(muro60)
+    //game.removeVisual(muro61)
+    //game.removeVisual(muro62)
+    //game.removeVisual(muro63)
+    //game.removeVisual(muro64)  
 
-    game.removeVisual(muroChica1)
-    game.removeVisual(muroChica2)   
+    //game.removeVisual(muroChica1)
+    //game.removeVisual(muroChica2)  
+    self.retirarGrupoDeVisuales([
+    muro0,muro1,muro2,muro3,muro4,muro5,
+    muro20,muro21,muro22,muro24,muro25,
+    muro30,muro31,muro32,muro33,muro34,muro35,
+    muro40,muro41,muro42,muro43,muro44,muro45,
+    muro50,muro51,muro52,muro53,muro54,muro55,
+    muro60,muro61,muro62,muro63,muro64,
+    muroChica1, muroChica2
+    ])
+  }
+  method agregarGrupoDeVisuales(unGrupoDeVisuales){
+    unGrupoDeVisuales.forEach({ visual => game.addVisual(visual) })
+  }
+  method retirarGrupoDeVisuales(unGrupoDeVisuales)
+  {
+    unGrupoDeVisuales.forEach({ visuales => game.removeVisual(visuales) })
   }
 }
 
@@ -339,13 +373,17 @@ object nivel2
   }
 
   method agregarVisuales() {
-    game.addVisual(self)
-    game.addVisual(enemigo)
-    game.addVisual(caja1)
-    game.addVisual(caja2)
-    game.addVisual(caja3)
-    game.addVisual(caja4)
-    game.addVisual(sleepyCat2)
+    //game.addVisual(self)
+    //game.addVisual(enemigo)
+    //game.addVisual(caja1)
+    //game.addVisual(caja2)
+    //game.addVisual(caja3)
+    //game.addVisual(caja4)
+    //game.addVisual(sleepyCat2)
+    self.agregarGrupoDeVisuales([
+      self,enemigo,caja1,caja2,caja3,caja4,
+      sleepyCat2
+    ])
     sleepyCat2.position(game.at(7,1))
     sleepyCat2.energia(90)
     game.addVisual(displayDeStats)
@@ -353,20 +391,30 @@ object nivel2
     murosDelimitantes2.agregar()
   }
   method retirarVisuales(){
-    game.removeVisual(self)
-    game.removeVisual(enemigo)
-    game.removeVisual(caja1)
-    game.removeVisual(caja2)
-    game.removeVisual(caja3)
-    game.removeVisual(caja4)
-    game.removeVisual(sleepyCat2)
-    game.removeVisual(displayDeStats)
+    //game.removeVisual(self)
+    //game.removeVisual(enemigo)
+    //game.removeVisual(caja1)
+    //game.removeVisual(caja2)
+    //game.removeVisual(caja3)
+    //game.removeVisual(caja4)
+    //game.removeVisual(sleepyCat2)
+    //game.removeVisual(displayDeStats)
+    self.retirarGrupoDeVisuales([
+      self,enemigo,caja1,caja2,caja3,caja4,
+      sleepyCat2,displayDeStats
+    ])
     murosDelimitantes2.quitar()
   }
   method colisionSleepy() {
     
   }
-
+   method agregarGrupoDeVisuales(unGrupoDeVisuales){
+    unGrupoDeVisuales.forEach({ visual => game.addVisual(visual) })
+  }
+  method retirarGrupoDeVisuales(unGrupoDeVisuales)
+  {
+    unGrupoDeVisuales.forEach({ visuales => game.removeVisual(visuales) })
+  }
   //method musicaDeFondo()=game.sound("battle2.mp3")
   //var property seReprodujoElFondo=false
 }
@@ -390,12 +438,14 @@ object pantallaFinal
       sleepyCat2.llave(false)
       sleepyCat2.juguete(false)
       sleepyCat2.energia(90)
-      sleepyCat2.position().origin()
+      sleepyCat2.position(game.origin())
       enemigo.position(game.at(2,12))
       malaOnda.position(game.at(2,2))
     }
     //method musicaDeFondo()=game.sound("menu.mp3")
     //var property seReprodujoElFondo=false
+    method limiteX()=[0,game.width()-1]
+    method limiteY()=[0,game.height()-1]
 }
 class MuroDelimitante{
   const property position
@@ -415,40 +465,57 @@ class MuroDelimitante{
 
 object murosDelimitantes2 {
   method agregar() {
-    game.addVisual(muro110)
-    game.addVisual(muro111)
-    game.addVisual(muro112)
-    game.addVisual(muro113)
-    game.addVisual(muro114)
-    game.addVisual(muro115)
-    game.addVisual(muro116)
-    game.addVisual(muro117)
-    game.addVisual(muro118)
-    game.addVisual(muro119)
-    game.addVisual(muro120)
-    game.addVisual(muro121)
-    game.addVisual(muro122)
-    game.addVisual(muro123)
-    game.addVisual(muro124)
-    game.addVisual(muro125)
+    //game.addVisual(muro110)
+    //game.addVisual(muro111)
+    //game.addVisual(muro112)
+    //game.addVisual(muro113)
+    //game.addVisual(muro114)
+    //game.addVisual(muro115)
+    //game.addVisual(muro116)
+    //game.addVisual(muro117)
+    //game.addVisual(muro118)
+    //game.addVisual(muro119)
+    //game.addVisual(muro120)
+    //game.addVisual(muro121)
+    //game.addVisual(muro122)
+    //game.addVisual(muro123)
+    //game.addVisual(muro124)
+    //game.addVisual(muro125)
+    self.agregarGrupoDeVisuales([
+      muro110,muro111,muro112,muro113,muro114,muro115,
+      muro116,muro117,muro118,muro119,muro120,
+      muro121,muro122,muro123,muro124,muro125
+    ])
   }
   method quitar() {
-    game.removeVisual(muro110)
-    game.removeVisual(muro111)
-    game.removeVisual(muro112)
-    game.removeVisual(muro113)
-    game.removeVisual(muro114)
-    game.removeVisual(muro115)
-    game.removeVisual(muro116)
-    game.removeVisual(muro117)
-    game.removeVisual(muro118)
-    game.removeVisual(muro119)
-    game.removeVisual(muro120)
-    game.removeVisual(muro121)
-    game.removeVisual(muro122)
-    game.removeVisual(muro123)
-    game.removeVisual(muro124)
-    game.removeVisual(muro125)
+    //game.removeVisual(muro110)
+    //game.removeVisual(muro111)
+    //game.removeVisual(muro112)
+    //game.removeVisual(muro113)
+    //game.removeVisual(muro114)
+    //game.removeVisual(muro115)
+    //game.removeVisual(muro116)
+    //game.removeVisual(muro117)
+    //game.removeVisual(muro118)
+    //game.removeVisual(muro119)
+    //game.removeVisual(muro120)
+    //game.removeVisual(muro121)
+    //game.removeVisual(muro122)
+    //game.removeVisual(muro123)
+    //game.removeVisual(muro124)
+    //game.removeVisual(muro125)
+    self.retirarGrupoDeVisuales([
+      muro110,muro111,muro112,muro113,muro114,muro115,
+      muro116,muro117,muro118,muro119,muro120,
+      muro121,muro122,muro123,muro124,muro125
+    ])
+  }
+   method agregarGrupoDeVisuales(unGrupoDeVisuales){
+    unGrupoDeVisuales.forEach({ visual => game.addVisual(visual) })
+  }
+  method retirarGrupoDeVisuales(unGrupoDeVisuales)
+  {
+    unGrupoDeVisuales.forEach({ visuales => game.removeVisual(visuales) })
   }
 }
 
